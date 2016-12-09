@@ -19,7 +19,6 @@ app.engine('html', mustacheExpress());
 app.set('views', __dirname + '/views');
 app.set('view engine', 'mustache');
 
-
 function login(res, name, password) {
 	var where = ' WHERE name="' + name + '" AND password=UNHEX("' + sha1(password) + '")';
 	var select = 'SELECT COUNT(*) AS count FROM participants INNER JOIN passwords ON participants.idwho=passwords.idwho';
@@ -28,13 +27,19 @@ function login(res, name, password) {
 	connection.query(query, function(err, rows, fields){
 		if (err) throw err;
 
-		console.log(rows[0]);
+        if (name === 'alex')
+            name = 'Лёха';
 
-		if (rows[0].count == 1)
-			res.render('start.html', {header1: "Давайте поработаем! ", user_name: name});
+		if (rows[0].count === 1)
+			res.render('start.html', {header1: name + ", что сегодня тратил?", user_name: name});
 		else
-			res.send('Fuck you');
+			res.send('Я тебя не знаю. Пшёл нахуй!!!');
 	});
+}
+
+function spend(res, name, reason, sum) {
+    connection.query('INSERT INTO spend (idwho, reason, amount) VALUES ('+ 12 + ',"' + reason + '","' + sum +'")');
+    console.log("Add spend with reason = " + reason + " sum = '" + sum + " for userId = " + 12);
 }
 
 app.post('/api/login', upload.array(), function(req, res, next) {
@@ -42,5 +47,9 @@ app.post('/api/login', upload.array(), function(req, res, next) {
 	login(res, req.body.user_login, req.body.user_password);
 });
 
+app.post('/api/spend', upload.array(), function(req, res, next) {
+    console.log("req body is " + JSON.stringify(req.body));
+    spend(res, req.body.user_name, req.body.reason, req.body.sum);
+});
 
 app.listen(8001, '127.0.0.1');

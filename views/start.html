@@ -1,10 +1,18 @@
 <!DOCTYPE html>
 <html lang="ru">
   <head>
-    <title>Приветствую, {{user_name}}</title>
+    <title>Работаем</title>
     <meta charset="utf-8">
   </head>
   <body>
     <h1>{{header1}}</h1>
+    <form method="post" action="/api/spend">
+        <label for="reason">На что:</label>
+        <input type="text" name="reason" id="reason">
+        <label for="sum">Сколько денег</label>
+        <input type="number" min="1" name="sum" id="sum"> руб
+        <input type="hidden" value="{{user_name}}" name="user_name">
+        <button type="submit">Потрачено!</button>
+    </form>
   </body>
 </html>
