@@ -46,7 +46,7 @@ function login(res, name, password) {
 }
 
 function spend(res, name, reason, sum) {
-  var q = 'INSERT INTO spend (idwho, reason, amount) VALUES (' + 12 + ',"' + reason + '","' + sum + '")';
+  var q = 'INSERT INTO spend (id, reason, amount) VALUES (' + 1 + ',"' + reason + '","' + sum + '")';
   connection.query(q, function(err, result) {
     if (err) throw err;
     res.send(result);
