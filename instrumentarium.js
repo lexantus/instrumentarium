@@ -13,6 +13,7 @@ var upload = multer();
 app.engine('html', mustacheExpress());
 app.set('views', __dirname + '/views');
 app.set('view engine', 'mustache');
+app.set('x-powered-by', false);
 
 var Login = require('./Login');
 var UserDB = require('./UserDB');
