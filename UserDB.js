@@ -1,13 +1,14 @@
-exports.UserDB = {};
+UserDB = {};
 UserDB.host = 'localhost';
-UserDB.user = 'alex';
+UserDB.user = 'root';
 UserDB.password = '1';
 UserDB.name = 'users';
-UserDB.get = function() {
+
+exports.get = function() {
   return {
-    host: this.host,
-    user: this.user,
-    password: this.password,
-    database: this.name
+    host: UserDB.host,
+    user: UserDB.user,
+    password: UserDB.password,
+    database: UserDB.name
   };
 };

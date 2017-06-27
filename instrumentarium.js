@@ -4,7 +4,6 @@ var bodyParser = require('body-parser');
 var url = require('url');
 var multer = require('multer');
 var mysql = require('mysql');
-var sha1 = require('sha1');
 var mustacheExpress = require('mustache-express');
 
 var app = express();
@@ -14,6 +13,10 @@ app.engine('html', mustacheExpress());
 app.set('views', __dirname + '/views');
 app.set('view engine', 'mustache');
 app.set('x-powered-by', false);
+
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 var Login = require('./Login');
 var UserDB = require('./UserDB');
@@ -40,7 +43,7 @@ app.post('/api/login', function(req, res, next) {
   console.log("req body is " + JSON.stringify(req.body));
   if (!user) {
     Login.execute(userDB, req, res, function(user) {
-      my.getAppData(connection, user.id, function(apps) {
+      my.getAppData(userDB, user.id, function(apps) {
         res.render('apps.html', apps);
       });
     });
@@ -54,3 +57,5 @@ app.get('/api/logout', function(req, res) {
   apps = undefined;
   res.render('login.html');
 });
+
+app.listen(8001, '127.0.0.1');

@@ -6,7 +6,7 @@ function App(name, db, scripts, views, icon) {
   this.icon_folder = icon;
 }
 
-express.getAppData = function(db, userId) {
+exports.getAppData = function(db, userId) {
   var appsData = [];
 
   var clms = 'name, db, scripts_folder';
