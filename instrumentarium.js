@@ -4,14 +4,15 @@ var bodyParser = require('body-parser');
 var url = require('url');
 var multer = require('multer');
 var mysql = require('mysql');
-var mustacheExpress = require('mustache-express');
+var handlebars = require('express-handlebars').create({
+  defaultLayout: 'main'
+});
 
 var app = express();
 var upload = multer();
 
-app.engine('html', mustacheExpress());
-app.set('views', __dirname + '/views');
-app.set('view engine', 'mustache');
+app.engine('handlebars', handlebars.engine);
+app.set('view engine', 'handlebars');
 app.set('x-powered-by', false);
 
 app.use(bodyParser.urlencoded({
@@ -31,10 +32,10 @@ var my = require('./apps');
 
 app.get('/', function(req, res) {
   if (!user) {
-    res.render('login.html');
+    res.render('login');
   } else {
     my.getAppData(userDB, user.id, function(apps) {
-      res.render('apps.html', apps);
+      res.render('apps');
     });
   }
 });
@@ -43,9 +44,11 @@ app.post('/api/login', function(req, res, next) {
   console.log("req body is " + JSON.stringify(req.body));
   if (!user) {
     Login.execute(userDB, req, res, function(user) {
-      my.getAppData(userDB, user.id, function(apps) {
-        res.render('apps.html', apps);
-      });
+      if (user) {
+        my.getAppData(userDB, user.id, function(apps) {
+          res.render('apps');
+        });
+      }
     });
   } else {
     res.send("You are already login");
@@ -55,7 +58,7 @@ app.post('/api/login', function(req, res, next) {
 app.get('/api/logout', function(req, res) {
   user = undefined;
   apps = undefined;
-  res.render('login.html');
+  res.render('login');
 });
 
 app.listen(8001, '127.0.0.1');

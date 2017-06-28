@@ -16,7 +16,8 @@ exports.execute = function(userDB, req, res, callback) {
       };
       callback(user);
     } else {
-      res.status(401).send("Wrong authorization!!!");
+      res.end("Wrong authorization!!!");
+      callback(undefined);
     }
   });
 };
