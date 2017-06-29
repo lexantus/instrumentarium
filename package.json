@@ -8,20 +8,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lexantus/money_backend.git"
+    "url": "git+https://github.com/lexantus/instrumentarium.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/lexantus/money_backend/issues"
+    "url": "https://github.com/lexantus/instrumentarium/issues"
   },
-  "homepage": "https://github.com/lexantus/money_backend#readme",
+  "homepage": "https://github.com/lexantus/instrumentarium#readme",
   "devDependencies": {
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
     "express-handlebars": "^3.0.0",
-    "multer": "^1.3.0",
-    "mustache-express": "^1.2.5",
     "mysql": "^2.13.0",
     "sha1": "^1.1.1",
     "sprintf-js": "^1.1.1"
