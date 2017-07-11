@@ -8,12 +8,12 @@ function App(name, db, scripts, views, icon) {
 
 var sprintf = require("sprintf-js").sprintf;
 
-exports.getAppData = function(db, userId, callback) {
+exports.getAppData = function(db, user_id, callback) {
   var appsData = [];
 
   var clms = 'name, db, scripts_folder, views_folder, icon';
   var tbl = 'user_apps';
-  var wr = 'user_id = ' + userId;
+  var wr = 'user_id = ' + user_id;
   var qry = sprintf('SELECT %s FROM %s WHERE %s', clms, tbl, wr);
 
   db.query(qry, function(err, rows, fields) {
@@ -24,6 +24,8 @@ exports.getAppData = function(db, userId, callback) {
       r = rows[i];
       appData[i] = new App(r.name, r.db, r.scripts_folder, r.views_folder, r.icon);
     }
+    callback(appsData);
   });
+
   callback(appsData);
 };

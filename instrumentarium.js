@@ -31,11 +31,11 @@ var UserDB = require('./UserDB');
 var userDB = mysql.createConnection(UserDB.get());
 userDB.connect();
 
-var my = require('./apps');
+var applications = require('./apps');
 
 app.get('/', function(req, res) {
   if (req.signedCookies.session_id) {
-    my.getAppDataBySessionId(userDB, req.signedCookies.session_id, function(apps) {
+    applications.getAppData(userDB, user_id, function(apps) {
       res.render('apps');
     });
   } else {
@@ -47,12 +47,11 @@ app.post('/api/login', function(req, res, next) {
   console.log("req body is " + JSON.stringify(req.body));
   if (req.signedCookies.session_id) {
     res.send("You are already login");
-    next();
   }
 
   Login.execute(userDB, req, res, function(user) {
     if (user) {
-      my.getAppData(userDB, user.id, function(apps) {
+      applications.getAppData(userDB, user.id, function(apps) {
         res.cookie('session_id', user.session_id, {
           signed: true
         });
