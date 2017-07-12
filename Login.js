@@ -3,7 +3,7 @@ var sprintf = require("sprintf-js").sprintf;
 const UUID = require('uuid/v1');
 
 exports.execute = function(db, req, res, callback) {
-  var clms = 'id, COUNT(*) AS count';
+  var clms = 'id';
   var tbl = 'users';
   var wr = 'name="' + req.body.login + '" AND password=UNHEX("' + sha1(req.body.password) + '")';
   var qry = sprintf('SELECT %s FROM %s WHERE %s', clms, tbl, wr);
