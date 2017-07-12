@@ -35,8 +35,12 @@ var applications = require('./apps');
 
 app.get('/', function(req, res) {
   if (req.signedCookies.session_id) {
-    applications.getAppData(userDB, user_id, function(apps) {
+    applications.getAppDataBySessionId(userDB, req.signedCookies.session_id, function(apps) {
+      console.log(apps);
       res.render('apps');
+    }, function(msg) {
+      console.log(msg);
+      res.render('login');
     });
   } else {
     res.render('login');
@@ -45,18 +49,21 @@ app.get('/', function(req, res) {
 
 app.post('/api/login', function(req, res, next) {
   console.log("req body is " + JSON.stringify(req.body));
-  if (req.signedCookies.session_id) {
-    res.send("You are already login");
-  }
 
   Login.execute(userDB, req, res, function(user) {
     if (user) {
-      applications.getAppData(userDB, user.id, function(apps) {
+      applications.getAppDataBySessionId(userDB, user.session_id, function(apps) {
         res.cookie('session_id', user.session_id, {
           signed: true
         });
+        console.log(apps);
         res.render('apps');
+      }, function(msg) {
+        console.log(msg);
+        res.render('login');
       });
+    } else {
+      res.send("Wrong authorization!!!");
     }
   });
 });
