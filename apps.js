@@ -9,7 +9,7 @@ function App(name, db, scripts, views, icon) {
 var sprintf = require("sprintf-js").sprintf;
 
 exports.getAppDataBySessionId = function(db, session_id, success, fail) {
-  var clms = "user_id, COUNT(*) AS count";
+  var clms = "user_id";
   var tbl = "sessions";
   var wr = "session_id = '" + session_id + "'";
   var qry = sprintf('SELECT %s FROM %s WHERE %s', clms, tbl, wr);
@@ -35,7 +35,7 @@ exports.getAppDataBySessionId = function(db, session_id, success, fail) {
         success(appsData);
       });
     } else {
-      fail("There is no session_id.");
+      fail("There is no session_id in database. It was deleted from table.");
     }
   });
 };

@@ -40,10 +40,15 @@ app.get('/', function(req, res) {
       res.render('apps');
     }, function(msg) {
       console.log(msg);
-      res.render('login');
+      res.render('login', {
+        header: "Авторизуйтесь",
+        msg: msg
+      });
     });
   } else {
-    res.render('login');
+    res.render('login', {
+      header: "Авторизуйтесь"
+    });
   }
 });
 
@@ -60,10 +65,15 @@ app.post('/api/login', function(req, res, next) {
         res.render('apps');
       }, function(msg) {
         console.log(msg);
-        res.render('login');
+        res.render('login', {
+          header: "Авторизуйтесь",
+          msg: msg
+        });
       });
     } else {
-      res.send("Wrong authorization!!!");
+      res.render('login', {
+        header: "Попробуйте еще раз"
+      });
     }
   });
 });
