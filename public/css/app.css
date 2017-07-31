@@ -1,0 +1,44 @@
+body {
+  background: #333333;
+}
+
+.apps {
+  background-color: #444;
+  padding: 20px;
+}
+
+div.icon {
+  margin: 15px auto;
+  padding: 5px;
+  width: 185px;
+  height: 55px;
+  color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+  background: #969696;
+  font-family: "Myriad Pro", "Trebuchet MS", sans-serif;
+  font-size: 32px;
+  font-weight: bold;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+div.icon.money {
+  background: #030;
+}
+div.icon.money:after {
+  content: "Money";
+  text-shadow: 36px 36px 0px #010, 35px 35px 0px #010, 34px 34px 0px #010, 33px 33px 0px #010, 32px 32px 0px #010, 31px 31px 0px #010, 30px 30px 0px #010, 29px 29px 0px #010, 28px 28px 0px #010, 27px 27px 0px #010, 26px 26px 0px #010, 25px 25px 0px #010, 24px 24px 0px #010, 23px 23px 0px #010, 22px 22px 0px #010, 21px 21px 0px #010, 20px 20px 0px #010, 19px 19px 0px #010, 18px 18px 0px #010, 17px 17px 0px #010, 16px 16px 0px #010, 15px 15px 0px #010, 14px 14px 0px #010, 13px 13px 0px #010, 12px 12px 0px #010, 11px 11px 0px #010, 10px 10px 0px #010, 9px 9px 0px #010, 8px 8px 0px #010, 7px 7px 0px #010, 6px 6px 0px #010, 5px 5px 0px #010, 4px 4px 0px #010, 3px 3px 0px #010, 2px 2px 0px #010, 1px 1px 0px #010;
+}
+div.icon.cites {
+  background: orange;
+}
+div.icon.cites:after {
+  content: "Cites";
+  text-shadow: 36px 36px 0px #b37400, 35px 35px 0px #b37400, 34px 34px 0px #b37400, 33px 33px 0px #b37400, 32px 32px 0px #b37400, 31px 31px 0px #b37400, 30px 30px 0px #b37400, 29px 29px 0px #b37400, 28px 28px 0px #b37400, 27px 27px 0px #b37400, 26px 26px 0px #b37400, 25px 25px 0px #b37400, 24px 24px 0px #b37400, 23px 23px 0px #b37400, 22px 22px 0px #b37400, 21px 21px 0px #b37400, 20px 20px 0px #b37400, 19px 19px 0px #b37400, 18px 18px 0px #b37400, 17px 17px 0px #b37400, 16px 16px 0px #b37400, 15px 15px 0px #b37400, 14px 14px 0px #b37400, 13px 13px 0px #b37400, 12px 12px 0px #b37400, 11px 11px 0px #b37400, 10px 10px 0px #b37400, 9px 9px 0px #b37400, 8px 8px 0px #b37400, 7px 7px 0px #b37400, 6px 6px 0px #b37400, 5px 5px 0px #b37400, 4px 4px 0px #b37400, 3px 3px 0px #b37400, 2px 2px 0px #b37400, 1px 1px 0px #b37400;
+}
+div.icon.wallpapers {
+  background: #670067;
+}
+div.icon.wallpapers:after {
+  content: "Wallpapers";
+  text-shadow: 36px 36px 0px #4d004d, 35px 35px 0px #4d004d, 34px 34px 0px #4d004d, 33px 33px 0px #4d004d, 32px 32px 0px #4d004d, 31px 31px 0px #4d004d, 30px 30px 0px #4d004d, 29px 29px 0px #4d004d, 28px 28px 0px #4d004d, 27px 27px 0px #4d004d, 26px 26px 0px #4d004d, 25px 25px 0px #4d004d, 24px 24px 0px #4d004d, 23px 23px 0px #4d004d, 22px 22px 0px #4d004d, 21px 21px 0px #4d004d, 20px 20px 0px #4d004d, 19px 19px 0px #4d004d, 18px 18px 0px #4d004d, 17px 17px 0px #4d004d, 16px 16px 0px #4d004d, 15px 15px 0px #4d004d, 14px 14px 0px #4d004d, 13px 13px 0px #4d004d, 12px 12px 0px #4d004d, 11px 11px 0px #4d004d, 10px 10px 0px #4d004d, 9px 9px 0px #4d004d, 8px 8px 0px #4d004d, 7px 7px 0px #4d004d, 6px 6px 0px #4d004d, 5px 5px 0px #4d004d, 4px 4px 0px #4d004d, 3px 3px 0px #4d004d, 2px 2px 0px #4d004d, 1px 1px 0px #4d004d;
+}

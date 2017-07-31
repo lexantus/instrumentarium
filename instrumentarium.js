@@ -14,6 +14,13 @@ app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 app.set('x-powered-by', false);
 
+app.use(function(req, res, next) {
+  console.log("[Always middleware execution] req is " + req);
+  next();
+});
+
+app.use(express.static('public'));
+
 app.use(bodyParser.urlencoded({
   extended: true
 }));
@@ -37,6 +44,7 @@ app.get('/', function(req, res) {
   if (req.signedCookies.session_id) {
     applications.getAppDataBySessionId(userDB, req.signedCookies.session_id, function(apps) {
       console.log(apps);
+      app.locals.styles = '<link rel="stylesheet" href="/css/app.css">';
       res.render('apps');
     }, function(msg) {
       console.log(msg);
@@ -62,6 +70,7 @@ app.post('/api/login', function(req, res, next) {
           signed: true
         });
         console.log(apps);
+        app.locals.styles = '<link rel="stylesheet" href="/css/app.css">';
         res.render('apps');
       }, function(msg) {
         console.log(msg);
