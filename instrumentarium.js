@@ -15,7 +15,7 @@ app.set('view engine', 'handlebars');
 app.set('x-powered-by', false);
 
 app.use(function(req, res, next) {
-  console.log("[Always middleware execution] req is " + req);
+  console.log("[Always middleware execution] req is " + req.toString());
   next();
 });
 
@@ -48,12 +48,14 @@ app.get('/', function(req, res) {
       res.render('apps');
     }, function(msg) {
       console.log(msg);
+      app.locals.styles = '<link rel="stylesheet" href="/css/login.css">';
       res.render('login', {
         header: "Авторизуйтесь",
         msg: msg
       });
     });
   } else {
+    app.locals.styles = '<link rel="stylesheet" href="/css/login.css">';
     res.render('login', {
       header: "Авторизуйтесь"
     });
@@ -74,12 +76,14 @@ app.post('/api/login', function(req, res, next) {
         res.render('apps');
       }, function(msg) {
         console.log(msg);
+        app.locals.styles = '<link rel="stylesheet" href="/css/login.css">';
         res.render('login', {
           header: "Авторизуйтесь",
           msg: msg
         });
       });
     } else {
+      app.locals.styles = '<link rel="stylesheet" href="/css/login.css">';
       res.render('login', {
         header: "Попробуйте еще раз"
       });

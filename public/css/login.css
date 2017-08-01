@@ -1,0 +1,42 @@
+@font-face {
+  font-family: "Moz";
+  src: url("https://mdn.mozillademos.org/files/2468/VeraSeBd.ttf");
+}
+body {
+  background-color: #333;
+  font-family: "Moz", sans-serif;
+}
+
+form {
+  background-color: #151515;
+  box-sizing: border-box;
+  border-radius: 5px;
+  margin: 30px auto;
+  padding: 20px;
+  width: 280px;
+  border: 1px solid black;
+  color: white;
+  overflow: auto;
+  text-align: center;
+}
+form input {
+  margin-bottom: 20px;
+  height: 40px;
+  border: 1px solid black;
+  background-color: #777;
+  border-radius: 5px;
+  padding: 10px;
+  color: white;
+}
+form button {
+  width: 120px;
+  height: 50px;
+  overflow: hidden;
+  cursor: pointer;
+  background: green;
+  color: #fff;
+  border: 0;
+}
+form button:hover {
+  background: #008f00;
+}
