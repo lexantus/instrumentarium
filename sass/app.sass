@@ -1,7 +1,6 @@
 $icon_width: 185px
 $icon_height: 55px
 $icon_color: #030
-$icon_shadow_color: #010
 $iter: 36
 
 @mixin text-shadow($color)
@@ -15,6 +14,7 @@ $iter: 36
   padding: 20px
 
 div.icon
+  cursor: pointer
   margin: 15px auto
   padding: 5px
   width: $icon_width
@@ -29,19 +29,41 @@ div.icon
   box-sizing: border-box
 
   &.money
-    background: $icon_color
+    background: #030
     &:after
       content: "Money"
-      +text-shadow($icon_shadow_color)
+      +text-shadow(#010)
+    &:hover
+      background: lighten(#030, 5%)
+    &:active
+      border: 2px solid #030
 
   &.cites
-    background: orange
+    background: #009
     &:after
       content: "Cites"
-      +text-shadow(darken(orange, 15%))
+      +text-shadow(darken(#009, 15%))
+    &:hover
+      background: lighten(#009, 5%)
+    &:active
+      border: 2px solid #009
 
   &.wallpapers
     background: darken(purple, 5%)
     &:after
       content: "Wallpapers"
       +text-shadow(darken(purple, 10%))
+    &:hover
+      background: lighten(purple, 1%)
+    &:active
+      border: 2px solid purple
+
+  &.birthdays
+    background: darken(red, 25%)
+    &:after
+      content: "Birthdays"
+      +text-shadow(darken(red, 30%))
+    &:hover
+      background: lighten(red, 1%)
+    &:active
+      border: 2px solid red
