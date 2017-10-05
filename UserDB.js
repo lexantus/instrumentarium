@@ -1,7 +1,7 @@
 UserDB = {};
 UserDB.host = 'localhost';
 UserDB.user = 'root';
-UserDB.password = '1';
+UserDB.password = 'movieclip1';
 UserDB.name = 'users';
 
 exports.get = function() {
