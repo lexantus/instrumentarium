@@ -1,7 +1,26 @@
 <h1>Applications</h1>
 <div class="apps">
-  <div class="icon money"></div>
-  <div class="icon cites"></div>
-  <div class="icon wallpapers"></div>
-  <div class="icon birthdays"></div>
+  <div class="icon pomodoro" data-appName="pomodoro"></div>
 </div>
+<script>
+    let div = document.getElementsByClassName("apps")[ 0 ];
+
+    function loadApp(json){
+
+    }
+
+    for (let i = 0; i < div.children.length; i++)
+    {
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET', 'ajax/' + div.children[ i ].dataset.appName, true);
+        xhr.onreadystatechange = function(){
+          if (xhr.status === 200 && xhr.readyState === 4)
+          {
+            loadApp(JSON.parse(xhr.responseText));
+          }
+        };
+        div.children[ i ].addEventListener('click', function () {
+            xhr.send();
+        });
+    }
+</script>

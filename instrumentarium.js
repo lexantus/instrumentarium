@@ -15,7 +15,7 @@ app.set('view engine', 'handlebars');
 app.set('x-powered-by', false);
 
 app.use(function(req, res, next) {
-  console.log("[Always middleware execution] req is " + req.toString());
+  console.log("[Always middleware execution] req is ", req.url);
   next();
 });
 
