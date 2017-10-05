@@ -15,7 +15,7 @@ app.set('view engine', 'handlebars');
 app.set('x-powered-by', false);
 
 app.use(function(req, res, next) {
-  console.log("[Always middleware execution] req is " + req.toString());
+  console.log("[Always middleware execution] req is ", req.url);
   next();
 });
 
@@ -59,6 +59,21 @@ app.get('/', function(req, res) {
     res.render('login', {
       header: "Авторизуйтесь"
     });
+  }
+});
+
+app.get('ajax/pomodoro', function(req, res){
+  if (req.signedCookies.session_id) {
+    let json = {
+      name: 'pomodoro',
+      html: '<div>I am pomodoro!!!</div>',
+      js: ['js/pomodoro.js'],
+      css: ['css/pomodoro.css']
+    };
+    res.json(json);
+  }
+  else{
+    res.render('login');
   }
 });
 
