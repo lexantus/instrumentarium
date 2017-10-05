@@ -62,6 +62,21 @@ app.get('/', function(req, res) {
   }
 });
 
+app.get('ajax/pomodoro', function(req, res){
+  if (req.signedCookies.session_id) {
+    let json = {
+      name: 'pomodoro',
+      html: '<div>I am pomodoro!!!</div>',
+      js: ['js/pomodoro.js'],
+      css: ['css/pomodoro.css']
+    };
+    res.json(json);
+  }
+  else{
+    res.render('login');
+  }
+});
+
 app.post('/api/login', function(req, res, next) {
   console.log("req body is " + JSON.stringify(req.body));
 
