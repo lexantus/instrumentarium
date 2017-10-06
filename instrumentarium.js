@@ -64,7 +64,7 @@ app.get('/', function(req, res) {
 
 app.get('ajax/pomodoro', function(req, res){
   if (req.signedCookies.session_id) {
-    let json = {
+    var json = {
       name: 'pomodoro',
       html: '<div>I am pomodoro!!!</div>',
       js: ['js/pomodoro.js'],
@@ -88,7 +88,7 @@ app.post('/api/login', function(req, res, next) {
         });
         console.log(apps);
         app.locals.styles = '<link rel="stylesheet" href="/css/app.css">';
-        res.render('apps');
+        res.redirect('/');
       }, function(msg) {
         console.log(msg);
         app.locals.styles = '<link rel="stylesheet" href="/css/login.css">';
