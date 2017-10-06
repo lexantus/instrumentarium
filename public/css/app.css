@@ -18,9 +18,27 @@ div.icon {
   overflow: hidden;
   box-sizing: border-box;
 }
+
+div.icon.pomodoro {
+  background: darkorange;
+}
+
+div.icon.pomodoro:after {
+  content: "Pomodoro"
+}
+
+div.icon.pomodoro:hover {
+  background: orange;
+}
+
+div.icon.pomodoro:active {
+  border: 2px solid red;
+}
+
 div.icon.money {
   background: #030;
 }
+
 div.icon.money:after {
   content: "Money";
   text-shadow: 36px 36px 0px #010, 35px 35px 0px #010, 34px 34px 0px #010, 33px 33px 0px #010, 32px 32px 0px #010, 31px 31px 0px #010, 30px 30px 0px #010, 29px 29px 0px #010, 28px 28px 0px #010, 27px 27px 0px #010, 26px 26px 0px #010, 25px 25px 0px #010, 24px 24px 0px #010, 23px 23px 0px #010, 22px 22px 0px #010, 21px 21px 0px #010, 20px 20px 0px #010, 19px 19px 0px #010, 18px 18px 0px #010, 17px 17px 0px #010, 16px 16px 0px #010, 15px 15px 0px #010, 14px 14px 0px #010, 13px 13px 0px #010, 12px 12px 0px #010, 11px 11px 0px #010, 10px 10px 0px #010, 9px 9px 0px #010, 8px 8px 0px #010, 7px 7px 0px #010, 6px 6px 0px #010, 5px 5px 0px #010, 4px 4px 0px #010, 3px 3px 0px #010, 2px 2px 0px #010, 1px 1px 0px #010;
