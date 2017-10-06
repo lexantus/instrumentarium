@@ -14,7 +14,7 @@ app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 app.set('x-powered-by', false);
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   console.log("[Always middleware execution] req is ", req.url);
   next();
 });
@@ -40,13 +40,13 @@ userDB.connect();
 
 var applications = require('./apps');
 
-app.get('/', function(req, res) {
+app.get('/', function (req, res) {
   if (req.signedCookies.session_id) {
-    applications.getAppDataBySessionId(userDB, req.signedCookies.session_id, function(apps) {
+    applications.getAppDataBySessionId(userDB, req.signedCookies.session_id, function (apps) {
       console.log(apps);
       app.locals.styles = '<link rel="stylesheet" href="/css/app.css">';
       res.render('apps');
-    }, function(msg) {
+    }, function (msg) {
       console.log(msg);
       app.locals.styles = '<link rel="stylesheet" href="/css/login.css">';
       res.render('login', {
@@ -62,7 +62,7 @@ app.get('/', function(req, res) {
   }
 });
 
-app.get('ajax/pomodoro', function(req, res){
+app.get('ajax/pomodoro', function (req, res) {
   if (req.signedCookies.session_id) {
     var json = {
       name: 'pomodoro',
@@ -72,24 +72,39 @@ app.get('ajax/pomodoro', function(req, res){
     };
     res.json(json);
   }
-  else{
+  else {
     res.render('login');
   }
 });
 
-app.post('/api/login', function(req, res, next) {
+app.get('ajax/cites', function (req, res) {
+  if (req.signedCookies.session_id) {
+    var json = {
+      name: 'cites',
+      html: '<div>I am cites!!!</div>',
+      js: ['js/cites/js'],
+      css: ['css/cites.css']
+    };
+    res.json(json);
+  }
+  else {
+    res.render('login');
+  }
+});
+
+app.post('/api/login', function (req, res, next) {
   console.log("req body is " + JSON.stringify(req.body));
 
-  Login.execute(userDB, req, res, function(user) {
+  Login.execute(userDB, req, res, function (user) {
     if (user) {
-      applications.getAppDataBySessionId(userDB, user.session_id, function(apps) {
+      applications.getAppDataBySessionId(userDB, user.session_id, function (apps) {
         res.cookie('session_id', user.session_id, {
           signed: true
         });
         console.log(apps);
         app.locals.styles = '<link rel="stylesheet" href="/css/app.css">';
         res.redirect('/');
-      }, function(msg) {
+      }, function (msg) {
         console.log(msg);
         app.locals.styles = '<link rel="stylesheet" href="/css/login.css">';
         res.render('login', {
