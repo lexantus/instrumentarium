@@ -19,7 +19,7 @@
     };
     div.children[i].addEventListener('click', function () {
       div.children[i].classList.add('icon-loader');
-      xhr.send();
+      xhrs[i].send();
     });
   }
 })();
