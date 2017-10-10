@@ -62,7 +62,7 @@ app.get('/', function (req, res) {
   }
 });
 
-app.get('ajax/pomodoro', function (req, res) {
+app.get('/ajax/pomodoro', function (req, res) {
   if (req.signedCookies.session_id) {
     var json = {
       name: 'pomodoro',
@@ -77,7 +77,7 @@ app.get('ajax/pomodoro', function (req, res) {
   }
 });
 
-app.get('ajax/cites', function (req, res) {
+app.get('/ajax/cites', function (req, res) {
   if (req.signedCookies.session_id) {
     var json = {
       name: 'cites',
