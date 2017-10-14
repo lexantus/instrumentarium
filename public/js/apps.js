@@ -6,22 +6,23 @@
   }
 
   function xhrStateHandler(i) {
-       function checkXHR()
-       { 
-          if (xhrs[i].status === 200 && xhrs[i].readyState === 4) {
-             div.children[i].style.visibility = false;
-             loadApp(JSON.parse(xhrs[i].responseText));
-          }
-       }
-       return checkXHR;
+    function checkXHR() {
+      if (xhrs[i].status === 200 && xhrs[i].readyState === 4) {
+        div.children[i].style.visibility = false;
+        loadApp(JSON.parse(xhrs[i].responseText));
+      }
+    }
+
+    return checkXHR;
   }
 
   function clickHandler(i) {
-	function sendXHR() {
-	  div.children[i].classList.add('icon-loader');
-          xhrs[i].send();
-	}
-	return sendXHR;
+    function sendXHR() {
+      div.children[i].classList.add('icon-loader');
+      xhrs[i].send();
+    }
+
+    return sendXHR;
   }
 
   var xhrs = [];
