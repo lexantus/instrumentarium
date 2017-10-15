@@ -84,7 +84,7 @@ app.get('/ajax/cites', function (req, res) {
       status: 'ok',
       name: 'cites',
       html: '<div>I am cites!!!</div>',
-      js: ['/js/cites/js'],
+      js: ['/js/cites.js'],
       css: ['/css/cites.css']
     };
     res.json(json);
