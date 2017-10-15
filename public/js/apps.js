@@ -3,6 +3,12 @@
 
   function loadApp(json) {
     console.log(json);
+    var html = json.html;
+    var css = '<link rel="stylesheet" href="' + json.css + '">';
+    var js = '<script src="' + json.js + '"></script>';
+    document.getElementsByTagName('head')[ 0 ].innerHTML += css;
+    document.getElementsByTagName('body')[ 0 ].innerHTML += html;
+    document.getElementsByTagName('body')[ 0 ].innerHTML += js;
   }
 
   function xhrStateHandler(i) {

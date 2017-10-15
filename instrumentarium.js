@@ -65,6 +65,7 @@ app.get('/', function (req, res) {
 app.get('/ajax/pomodoro', function (req, res) {
   if (req.signedCookies.session_id) {
     var json = {
+      status: 'ok',
       name: 'pomodoro',
       html: '<div>I am pomodoro!!!</div>',
       js: ['js/pomodoro.js'],
@@ -80,6 +81,7 @@ app.get('/ajax/pomodoro', function (req, res) {
 app.get('/ajax/cites', function (req, res) {
   if (req.signedCookies.session_id) {
     var json = {
+      status: 'ok',
       name: 'cites',
       html: '<div>I am cites!!!</div>',
       js: ['js/cites/js'],
