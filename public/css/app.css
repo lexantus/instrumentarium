@@ -19,6 +19,10 @@ div.icon {
   box-sizing: border-box;
 }
 
+.button-disabled {
+  opacity: 0.5;
+}
+
 div.icon.pomodoro {
   background: darkorange;
 }
