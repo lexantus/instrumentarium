@@ -68,8 +68,8 @@ app.get('/ajax/pomodoro', function (req, res) {
       status: 'ok',
       name: 'pomodoro',
       html: '<div>I am pomodoro!!!</div>',
-      js: ['js/pomodoro.js'],
-      css: ['css/pomodoro.css']
+      js: ['/js/pomodoro.js'],
+      css: ['/css/pomodoro.css']
     };
     res.json(json);
   }
@@ -84,8 +84,8 @@ app.get('/ajax/cites', function (req, res) {
       status: 'ok',
       name: 'cites',
       html: '<div>I am cites!!!</div>',
-      js: ['js/cites/js'],
-      css: ['css/cites.css']
+      js: ['/js/cites/js'],
+      css: ['/css/cites.css']
     };
     res.json(json);
   }

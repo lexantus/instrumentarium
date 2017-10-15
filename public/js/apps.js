@@ -6,9 +6,16 @@
     var html = json.html;
     var css = '<link rel="stylesheet" href="' + json.css + '">';
     var js = '<script src="' + json.js + '"></script>';
-    document.getElementsByTagName('head')[ 0 ].innerHTML += css;
-    document.getElementsByTagName('body')[ 0 ].innerHTML += html;
-    document.getElementsByTagName('body')[ 0 ].innerHTML += js;
+    var htmlEl = document.createElement('div');
+    htmlEl.innerHTML = json.html;
+    var cssEl = document.createElement('link');
+    cssEl.rel = 'stylesheet';
+    cssEl.href = json.css;
+    var jsEl = document.createElement('script');
+    jsEl.src = json.js;
+    document.getElementsByTagName('head')[ 0 ].appendChild(cssEl);
+    document.getElementsByTagName('body')[ 0 ].appendChild(htmlEl);
+    document.getElementsByTagName('body')[ 0 ].appendChild(jsEl);
   }
 
   function xhrStateHandler(i) {
@@ -16,6 +23,7 @@
       if (xhrs[i].status === 200 && xhrs[i].readyState === 4) {
         div.children[i].style.visibility = false;
         loadApp(JSON.parse(xhrs[i].responseText));
+        xhrs[ i ].open();
       }
     }
 
