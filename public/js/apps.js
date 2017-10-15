@@ -47,7 +47,7 @@
 
   function clickHandler(i) {
     function sendXHR() {
-      div.children[i].removeEventListener('click', clickHandler(i));
+      div.children[i].removeEventListener('click', sendXHR);
       div.children[i].classList.add('button-disabled');
       xhrs[i].send();
     }
