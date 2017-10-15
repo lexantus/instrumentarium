@@ -1,21 +1,36 @@
 (function () {
-  var div = document.getElementsByClassName("apps")[0];
+  var div = document.getElementsByClassName('apps')[0];
+  var body = document.getElementsByTagName('body')[0];
+  var head = document.getElementsByTagName('head')[0];
 
   function loadApp(json) {
-    console.log(json);
-    var html = json.html;
-    var css = '<link rel="stylesheet" href="' + json.css + '">';
-    var js = '<script src="' + json.js + '"></script>';
+
+    function addJSElements() {
+      var js = json.js;
+      var el;
+      for (var i = 0; i < js.length; i++) {
+        el = document.createElement('script');
+        el.src = js[i];
+        body.appendChild(el);
+      }
+    }
+
+    function addCSSElements() {
+      var css = json.css;
+      var el;
+      for (var i = 0; i < css.length; i++) {
+        el = document.createElement('link');
+        el.rel = 'stylesheet';
+        el.href = css[i];
+        head.appendChild(el);
+      }
+    }
+
     var htmlEl = document.createElement('div');
     htmlEl.innerHTML = json.html;
-    var cssEl = document.createElement('link');
-    cssEl.rel = 'stylesheet';
-    cssEl.href = json.css;
-    var jsEl = document.createElement('script');
-    jsEl.src = json.js;
-    document.getElementsByTagName('head')[ 0 ].appendChild(cssEl);
-    document.getElementsByTagName('body')[ 0 ].appendChild(htmlEl);
-    document.getElementsByTagName('body')[ 0 ].appendChild(jsEl);
+
+    addCSSElements();
+    addJSElements();
   }
 
   function xhrStateHandler(i, appname) {
@@ -23,7 +38,7 @@
       if (xhrs[i].status === 200 && xhrs[i].readyState === 4) {
         div.children[i].style.visibility = false;
         loadApp(JSON.parse(xhrs[i].responseText));
-        xhrs[ i ].open('GET', 'ajax/' + appname);
+        xhrs[i].open('GET', 'ajax/' + appname);
       }
     }
 
@@ -43,7 +58,7 @@
   for (var i = 0; i < div.children.length; i++) {
     xhrs.push(new XMLHttpRequest());
     xhrs[xhrs.length - 1].open('GET', 'ajax/' + div.children[i].dataset.appname, true);
-    xhrs[xhrs.length - 1].onreadystatechange = xhrStateHandler(i, div.children[ i ].dataset.appname);
+    xhrs[xhrs.length - 1].onreadystatechange = xhrStateHandler(i, div.children[i].dataset.appname);
     div.children[i].addEventListener('click', clickHandler(i));
   }
 })();
