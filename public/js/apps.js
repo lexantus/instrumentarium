@@ -28,6 +28,7 @@
 
     var htmlEl = document.createElement('div');
     htmlEl.innerHTML = json.html;
+    body.appendChild(htmlEl);
 
     addCSSElements();
     addJSElements();
