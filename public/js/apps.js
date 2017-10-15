@@ -18,12 +18,12 @@
     document.getElementsByTagName('body')[ 0 ].appendChild(jsEl);
   }
 
-  function xhrStateHandler(i) {
+  function xhrStateHandler(i, appname) {
     function checkXHR() {
       if (xhrs[i].status === 200 && xhrs[i].readyState === 4) {
         div.children[i].style.visibility = false;
         loadApp(JSON.parse(xhrs[i].responseText));
-        xhrs[ i ].open();
+        xhrs[ i ].open('GET', 'ajax/' + appname);
       }
     }
 
@@ -43,7 +43,7 @@
   for (var i = 0; i < div.children.length; i++) {
     xhrs.push(new XMLHttpRequest());
     xhrs[xhrs.length - 1].open('GET', 'ajax/' + div.children[i].dataset.appname, true);
-    xhrs[xhrs.length - 1].onreadystatechange = xhrStateHandler(i);
+    xhrs[xhrs.length - 1].onreadystatechange = xhrStateHandler(i, div.children[ i ].dataset.appname);
     div.children[i].addEventListener('click', clickHandler(i));
   }
 })();
