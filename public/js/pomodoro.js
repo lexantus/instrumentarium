@@ -68,7 +68,7 @@ class Pomodoro {
 
 let clockDiv = document.getElementById('clock');
 let btnWork = document.getElementById('work');
-let btnBreak = document.getElementById('break');
+let btnBreak = document.getElementById('short_break');
 let btnLongBreak = document.getElementById('long_break');
 
 let pomodoro = new Pomodoro(function(seconds){
