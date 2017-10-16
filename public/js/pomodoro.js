@@ -67,6 +67,9 @@ class Pomodoro {
 }
 
 let clockDiv = document.getElementById('clock');
+let btnWork = document.getElementById('work');
+let btnBreak = document.getElementById('break');
+let btnLongBreak = document.getElementById('long_break');
 
 let pomodoro = new Pomodoro(function(seconds){
   "use strict";
@@ -77,4 +80,14 @@ let pomodoro = new Pomodoro(function(seconds){
   clockDiv.innerHTML = mins + ':' + sec;
 });
 
-pomodoro.startPomodoro();
+btnWork.addEventListener('click', function(){
+  pomodoro.startPomodoro();
+});
+
+btnBreak.addEventListener('click', function() {
+  pomodoro.startBreak();
+});
+
+btnLongBreak.addEventListener('click', function() {
+  pomodoro.startLongBreak();
+});

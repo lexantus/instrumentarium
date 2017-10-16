@@ -82,6 +82,49 @@ app.get('/ajax/pomodoro', function (req, res) {
   }
 });
 
+app.get('/ajax/pomodoro/complete', function (req, res) {
+  if (req.signedCookies.session_id)
+  {
+    var json = {
+      status: 'ok',
+      message: 'Good work!'
+    };
+    res.json(json);
+  }
+  else {
+    res.render('login');
+  }
+});
+
+app.get('/ajax/pomodoro/break_complete', function (req, res) {
+  if (req.signedCookies.session_id)
+  {
+    var json = {
+      status: 'ok',
+      message: 'Break complete!'
+    };
+    res.json(json);
+  }
+  else {
+    res.render('login');
+  }
+});
+
+app.get('/ajax/pomodoro/long_break_complete', function (req, res) {
+  if (req.signedCookies.session_id)
+  {
+    var json = {
+      status: 'ok',
+      message: 'Long break complete'
+    };
+    res.json(json);
+  }
+  else {
+    res.render('login');
+  }
+});
+
+
 app.get('/ajax/cites', function (req, res) {
   if (req.signedCookies.session_id) {
     var json = {
