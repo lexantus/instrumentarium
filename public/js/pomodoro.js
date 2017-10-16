@@ -6,13 +6,20 @@ class Pomodoro {
 
     this.seconds = 1500;
 
-    let self = this;
+    var svgContainer = document.getElementById('result');
+
+    var addSVG = (svg)=>{
+      let el = document.createElement('svg');
+      el.src=`/svg/${svg}`;
+      svgContainer.appendChild(el);
+    };
 
     this.xhrPomodoroComplete = new XMLHttpRequest();
     this.xhrPomodoroComplete.open('GET', `${BASE_URL}/complete`, true);
     this.xhrPomodoroComplete.onreadystatechange = () => {
       if (this.xhrPomodoroComplete.status === 200 && this.xhrPomodoroComplete.readyState === 4) {
         console.log("work: " + this.xhrPomodoroComplete.responseText);
+        addSVG('tomato.svg');
       }
     };
 
@@ -21,6 +28,7 @@ class Pomodoro {
     this.xhrBreakComplete.onreadystatechange = () => {
       if (this.xhrBreakComplete.status === 200 && this.xhrBreakComplete.readyState === 4) {
         console.log("short break: " + this.xhrBreakComplete.responseText);
+        addSVG('short_break.svg');
       }
     };
 
@@ -29,10 +37,13 @@ class Pomodoro {
     this.xhrLongBreakComplete.onreadystatechange = () => {
       if (this.xhrBreakComplete.status === 200 && this.xhrBreakComplete.readyState === 4) {
         console.log("long break: " + this.xhrBreakComplete.responseText);
+        addSVG('long_break.svg');
       }
     };
 
-    this.startAction = function (seconds, xhr) {
+    var self = this;
+
+    this.startAction = (seconds, xhr) => {
       this.seconds = seconds;
       clearInterval(this.timer);
       this.timer = setInterval(() => {
@@ -72,8 +83,7 @@ let btnWork = document.getElementById('work');
 let btnBreak = document.getElementById('short_break');
 let btnLongBreak = document.getElementById('long_break');
 
-let pomodoro = new Pomodoro(function(seconds){
-  "use strict";
+let pomodoro = new Pomodoro((seconds) => {
   let mins = Math.floor(seconds / 60);
   let sec = seconds - mins * 60;
   if (mins < 10) mins = '0' + mins;
@@ -81,14 +91,14 @@ let pomodoro = new Pomodoro(function(seconds){
   clockDiv.innerHTML = mins + ':' + sec;
 });
 
-btnWork.addEventListener('click', function(){
+btnWork.addEventListener('click', () => {
   pomodoro.startPomodoro();
 });
 
-btnBreak.addEventListener('click', function() {
+btnBreak.addEventListener('click', () => {
   pomodoro.startBreak();
 });
 
-btnLongBreak.addEventListener('click', function() {
+btnLongBreak.addEventListener('click', () => {
   pomodoro.startLongBreak();
 });
