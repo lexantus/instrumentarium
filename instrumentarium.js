@@ -71,7 +71,8 @@ app.get('/ajax/pomodoro', function (req, res) {
 <div id="clock">00:00</div>
 <div id="work" class="icon">start</div>
 <div id="short_break" class="icon">short break</div>
-<div id="long_break" class="icon">long break</div>`.trim(),
+<div id="long_break" class="icon">long break</div>
+<div id="result"></div>`.trim(),
       js: ['/js/pomodoro.js'],
       css: ['/css/pomodoro.css']
     };

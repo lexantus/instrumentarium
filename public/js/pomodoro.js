@@ -11,24 +11,24 @@ class Pomodoro {
     this.xhrPomodoroComplete = new XMLHttpRequest();
     this.xhrPomodoroComplete.open('GET', `${BASE_URL}/complete`, true);
     this.xhrPomodoroComplete.onreadystatechange = () => {
-      if (self.xhrPomodoroComplete.status === 200 && self.xhrPomodoroComplete.readyState === 4) {
-        console.log("work: " + self.xhrPomodoroComplete.responseText);
+      if (this.status === 200 && this.readyState === 4) {
+        console.log("work: " + this.responseText);
       }
     };
 
     this.xhrBreakComplete = new XMLHttpRequest();
     this.xhrBreakComplete.open('GET', `${BASE_URL}/break_complete`, true);
     this.xhrBreakComplete.onreadystatechange = () => {
-      if (self.xhrBreakComplete.status === 200 && self.xhrBreakComplete.readyState === 4) {
-        console.log("short break: " + self.xhrBreakComplete.responseText);
+      if (this.status === 200 && this.readyState === 4) {
+        console.log("short break: " + this.responseText);
       }
     };
 
     this.xhrLongBreakComplete = new XMLHttpRequest();
     this.xhrLongBreakComplete.open('GET', `${BASE_URL}/long_break_complete`, true);
     this.xhrLongBreakComplete.onreadystatechange = () => {
-      if (self.xhrLongBreakComplete.status === 200 && self.xhrLongBreakComplete.readyState === 4) {
-        console.log("long break: " + self.xhrLongBreakComplete.responseText);
+      if (this.status === 200 && this.readyState === 4) {
+        console.log("long break: " + this.responseText);
       }
     };
 
