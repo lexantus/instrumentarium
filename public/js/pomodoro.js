@@ -6,9 +6,9 @@ class Pomodoro {
 
     this.seconds = 1500;
 
-    var svgContainer = document.getElementById('result');
+    let svgContainer = document.getElementById('result');
 
-    var addSVG = (svg)=>{
+    let addSVG = (svg)=>{
       let el = document.createElement('svg');
       el.src=`/svg/${svg}`;
       svgContainer.appendChild(el);
