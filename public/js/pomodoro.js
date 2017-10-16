@@ -11,6 +11,8 @@ class Pomodoro {
     let addSVG = (svg)=>{
       let el = document.createElement('img');
       el.src=`/svg/${svg}`;
+      el.style.width = '100px';
+      el.style.height = '100px';
       svgContainer.appendChild(el);
     };
 
