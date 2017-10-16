@@ -36,7 +36,7 @@ class Pomodoro {
       this.seconds = seconds;
       this.timer = setInterval(() => {
         self.seconds -= 1;
-        if (self._seconds === 0) {
+        if (self.seconds === 0) {
           clearInterval(self.timer);
           xhr.send();
         }
@@ -47,6 +47,10 @@ class Pomodoro {
   set seconds(value) {
     this._seconds = value;
     this.changeCallback(this._seconds);
+  }
+
+  get seconds() {
+    return this._seconds;
   }
 
   startPomodoro() {
