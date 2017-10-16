@@ -17,7 +17,6 @@ class Pomodoro {
     };
 
     this.xhrPomodoroComplete = new XMLHttpRequest();
-    this.xhrPomodoroComplete.open('GET', `${BASE_URL}/complete`, true);
     this.xhrPomodoroComplete.onreadystatechange = () => {
       if (this.xhrPomodoroComplete.status === 200 && this.xhrPomodoroComplete.readyState === 4) {
         console.log("work: " + this.xhrPomodoroComplete.responseText);
@@ -26,7 +25,6 @@ class Pomodoro {
     };
 
     this.xhrBreakComplete = new XMLHttpRequest();
-    this.xhrBreakComplete.open('GET', `${BASE_URL}/break_complete`, true);
     this.xhrBreakComplete.onreadystatechange = () => {
       if (this.xhrBreakComplete.status === 200 && this.xhrBreakComplete.readyState === 4) {
         console.log("short break: " + this.xhrBreakComplete.responseText);
@@ -35,7 +33,6 @@ class Pomodoro {
     };
 
     this.xhrLongBreakComplete = new XMLHttpRequest();
-    this.xhrLongBreakComplete.open('GET', `${BASE_URL}/long_break_complete`, true);
     this.xhrLongBreakComplete.onreadystatechange = () => {
       if (this.xhrBreakComplete.status === 200 && this.xhrBreakComplete.readyState === 4) {
         console.log("long break: " + this.xhrBreakComplete.responseText);
@@ -43,7 +40,7 @@ class Pomodoro {
       }
     };
 
-    var self = this;
+    let self = this;
 
     this.startAction = (seconds, xhr) => {
       this.seconds = seconds;
@@ -68,14 +65,17 @@ class Pomodoro {
   }
 
   startPomodoro() {
+    this.xhrPomodoroComplete.open('GET', `${BASE_URL}/complete`, true);
     this.startAction(1500, this.xhrPomodoroComplete);
   }
 
   startBreak() {
+    this.xhrBreakComplete.open('GET', `${BASE_URL}/break_complete`, true);
     this.startAction(300, this.xhrBreakComplete);
   }
 
   startLongBreak() {
+    this.xhrLongBreakComplete.open('GET', `${BASE_URL}/long_break_complete`, true);
     this.startAction(600, this.xhrLongBreakComplete);
   }
 }
