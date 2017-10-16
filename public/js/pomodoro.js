@@ -61,3 +61,12 @@ class Pomodoro {
     this.startAction(600, this.xhrLongBreakComplete);
   }
 }
+
+let clockDiv = document.getElementById('clock');
+
+let pomodoro = new Pomodoro(function(seconds){
+  "use strict";
+  clockDiv.innerHTML = seconds;
+});
+
+pomodoro.startPomodoro();
