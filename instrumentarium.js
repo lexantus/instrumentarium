@@ -67,7 +67,11 @@ app.get('/ajax/pomodoro', function (req, res) {
     var json = {
       status: 'ok',
       name: 'pomodoro',
-      html: '<div id="clock">00:00</div>',
+      html: `
+<div id="clock">00:00</div>
+<div id="work" class="icon">start</div>
+<div id="short_break" class="icon">short break</div>
+<div id="long_break" class="icon">long break</div>`.trim(),
       js: ['/js/pomodoro.js'],
       css: ['/css/pomodoro.css']
     };

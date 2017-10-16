@@ -70,7 +70,11 @@ let clockDiv = document.getElementById('clock');
 
 let pomodoro = new Pomodoro(function(seconds){
   "use strict";
-  clockDiv.innerHTML = "" + seconds;
+  let mins = Math.floor(seconds / 60);
+  let sec = seconds - mins * 60;
+  if (mins < 10) mins = '0' + mins;
+  if (sec < 10) sec = '0' + sec;
+  clockDiv.innerHTML = mins + ':' + sec;
 });
 
 pomodoro.startPomodoro();
