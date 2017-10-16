@@ -67,7 +67,7 @@ app.get('/ajax/pomodoro', function (req, res) {
     var json = {
       status: 'ok',
       name: 'pomodoro',
-      html: '<div>I am pomodoro!!!</div>',
+      html: '<div id="clock">00:00</div>',
       js: ['/js/pomodoro.js'],
       css: ['/css/pomodoro.css']
     };
@@ -94,7 +94,7 @@ app.get('/ajax/cites', function (req, res) {
   }
 });
 
-app.post('/api/login', function (req, res, next) {
+app.post('/api/login', function (req, res) {
   console.log("req body is " + JSON.stringify(req.body));
 
   Login.execute(userDB, req, res, function (user) {
