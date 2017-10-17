@@ -1,7 +1,5 @@
 class Pomodoro {
   constructor(changeCallback) {
-    const BASE_URL = '/ajax/pomodoro';
-
     this.changeCallback = changeCallback;
 
     this.seconds = 1500;
@@ -65,17 +63,17 @@ class Pomodoro {
   }
 
   startPomodoro() {
-    this.xhrPomodoroComplete.open('GET', `${BASE_URL}/complete`, true);
+    this.xhrPomodoroComplete.open('GET', `/ajax/pomodoro/complete`, true);
     this.startAction(1500, this.xhrPomodoroComplete);
   }
 
   startBreak() {
-    this.xhrBreakComplete.open('GET', `${BASE_URL}/break_complete`, true);
+    this.xhrBreakComplete.open('GET', `/ajax/pomodoro/break_complete`, true);
     this.startAction(300, this.xhrBreakComplete);
   }
 
   startLongBreak() {
-    this.xhrLongBreakComplete.open('GET', `${BASE_URL}/long_break_complete`, true);
+    this.xhrLongBreakComplete.open('GET', `/ajax/pomodoro/long_break_complete`, true);
     this.startAction(600, this.xhrLongBreakComplete);
   }
 }
