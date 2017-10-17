@@ -89,6 +89,7 @@ let pomodoro = new Pomodoro((seconds) => {
   if (mins < 10) mins = '0' + mins;
   if (sec < 10) sec = '0' + sec;
   clockDiv.innerHTML = mins + ':' + sec;
+  document.getElementsByTagName('title')[ 0 ].innerHTML = clockDiv.innerHTML;
 });
 
 btnWork.addEventListener('click', () => {
