@@ -104,4 +104,5 @@ btnLongBreak.addEventListener('click', () => {
 });
 
 document.getElementsByTagName('title')[ 0 ].innerHTML = 'Pomodoro';
+document.getElementsByTagName('h1')[ 0 ].innerHTML = 'Pomodoro';
 
