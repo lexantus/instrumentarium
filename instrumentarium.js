@@ -157,7 +157,7 @@ app.get('/ajax/cites', function (req, res) {
 
 app.post('/ajax/cites/addCite', function (req, res) {
     console.log('addCite ' + req);
-    res.json({status: 'ok', message: 'Cite is successfully added', req: JSON.parse(req)});
+    res.json({status: 'ok', message: 'Cite is successfully added', req: req.toString()});
 });
 
 app.post('/api/login', function (req, res) {
