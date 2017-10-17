@@ -32,8 +32,8 @@ class Pomodoro {
 
     this.xhrLongBreakComplete = new XMLHttpRequest();
     this.xhrLongBreakComplete.onreadystatechange = () => {
-      if (this.xhrBreakComplete.status === 200 && this.xhrBreakComplete.readyState === 4) {
-        console.log("long break: " + this.xhrBreakComplete.responseText);
+      if (this.xhrLongBreakComplete.status === 200 && this.xhrLongBreakComplete.readyState === 4) {
+        console.log("long break: " + this.xhrLongBreakComplete.responseText);
         addSVG('long_break.svg');
       }
     };
