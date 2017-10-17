@@ -132,7 +132,7 @@ app.get('/ajax/cites', function (req, res) {
       status: 'ok',
       name: 'cites',
       html: `
-<form action="/addCite" method="post">
+<form id="addCiteForm" action="/ajax/addCite" method="post">
   <h2>Add cite</h2>
   <label for="cite">Cite:</label>
   <textarea name="cite" id="cite" rows="6" cols="30" required></textarea>
@@ -155,9 +155,12 @@ app.get('/ajax/cites', function (req, res) {
   }
 });
 
-app.post('/api/login', function (req, res) {
-  console.log("req body is " + JSON.stringify(req.body));
+app.post('/ajax/cites/addCite', function (req, res) {
+    console.log('addCite ' + req);
+    res.json({status: 'ok', message: 'Cite is successfully added'});
+});
 
+app.post('/api/login', function (req, res) {
   Login.execute(userDB, req, res, function (user) {
     if (user) {
       applications.getAppDataBySessionId(userDB, user.session_id, function (apps) {
