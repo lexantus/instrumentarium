@@ -102,3 +102,6 @@ btnBreak.addEventListener('click', () => {
 btnLongBreak.addEventListener('click', () => {
   pomodoro.startLongBreak();
 });
+
+document.getElementsByTagName('title')[ 0 ].innerHTML = 'Pomodoro';
+
