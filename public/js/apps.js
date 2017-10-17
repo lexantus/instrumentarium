@@ -40,6 +40,7 @@
         div.children[i].style.visibility = false;
         loadApp(JSON.parse(xhrs[i].responseText));
         xhrs[i].open('GET', 'ajax/' + appname);
+        document.getElementsByTagName('title')[ 0 ].innerHTML = appname.toUpperCase();
       }
     }
 
