@@ -1,7 +1,7 @@
 var http = require('http');
 var express = require('express');
 var bodyParser = require('body-parser');
-var upload = require('multer');
+var multer = require('multer');
 var cookieParser = require('cookie-parser');
 var credentials = require('./credentials');
 var mysql = require('mysql');
@@ -10,6 +10,7 @@ var handlebars = require('express-handlebars').create({
 });
 
 var app = express();
+var upload = multer();
 
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
