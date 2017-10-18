@@ -1,6 +1,7 @@
 var http = require('http');
 var express = require('express');
 var bodyParser = require('body-parser');
+var upload = multer();
 var cookieParser = require('cookie-parser');
 var credentials = require('./credentials');
 var mysql = require('mysql');
@@ -155,7 +156,7 @@ app.get('/ajax/cites', function (req, res) {
   }
 });
 
-app.post('/ajax/cites/addCite', function (req, res) {
+app.post('/ajax/cites/addCite', upload.array([]), function (req, res) {
     console.log('addCite ' + req);
     res.json({status: 'ok', message: 'Cite is successfully added', req: req.body});
 });
