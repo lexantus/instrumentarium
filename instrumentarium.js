@@ -88,11 +88,14 @@ app.get('/ajax/pomodoro', function (req, res) {
 app.get('/ajax/pomodoro/complete', function (req, res) {
   if (req.signedCookies.session_id)
   {
-    var json = {
-      status: 'ok',
-      message: 'Good work!'
-    };
-    res.json(json);
+    var q = 'INSERT INTO pomodoro (type, time, session_id) VALUES (0, ' + new Date().getUTCDate() + ', ' + req.signedCookies.session_id;
+    userDB.query(q, function(err) {
+      if (err) throw err;
+      res.json({
+        status: 'ok',
+        message: 'Good work!'
+      });
+    });
   }
   else {
     res.render('login');
