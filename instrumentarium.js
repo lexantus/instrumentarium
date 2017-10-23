@@ -106,11 +106,15 @@ app.get('/ajax/pomodoro/complete', function (req, res) {
 app.get('/ajax/pomodoro/break_complete', function (req, res) {
   if (req.signedCookies.session_id)
   {
-    var json = {
-      status: 'ok',
-      message: 'Break complete!'
-    };
-    res.json(json);
+    var t = new Date().toISOString().slice(0, 19).replace('T', ' ');
+    var q = 'INSERT INTO pomodoro (type, time, session_id) VALUES ("1", "' + t + '", "' + req.signedCookies.session_id + '")';
+    userDB.query(q, function(err) {
+      var json = {
+        status: 'ok',
+        message: 'Break complete!'
+      };
+      res.json(json);
+    });
   }
   else {
     res.render('login');
@@ -120,11 +124,15 @@ app.get('/ajax/pomodoro/break_complete', function (req, res) {
 app.get('/ajax/pomodoro/long_break_complete', function (req, res) {
   if (req.signedCookies.session_id)
   {
-    var json = {
-      status: 'ok',
-      message: 'Long break complete'
-    };
-    res.json(json);
+    var t = new Date().toISOString().slice(0, 19).replace('T', ' ');
+    var q = 'INSERT INTO pomodoro (type, time, session_id) VALUES ("2", "' + t + '", "' + req.signedCookies.session_id + '")';
+    userDB.query(q, function(err) {
+      var json = {
+        status: 'ok',
+        message: 'Long break complete'
+      };
+      res.json(json);
+    });
   }
   else {
     res.render('login');
