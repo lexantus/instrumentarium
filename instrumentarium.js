@@ -89,15 +89,14 @@ app.get('/ajax/pomodoro/complete', function (req, res) {
   if (req.signedCookies.session_id)
   {
     var t = new Date().toISOString().slice(0, 19).replace('T', ' ');
-    var q = 'INSERT INTO pomodoro (type, time, session_id) VALUES ("0", ' + t + ', "' + req.signedCookies.session_id + '")';
-    res.send(q);
-    /*userDB.query(q, function(err) {
+    var q = 'INSERT INTO pomodoro (type, time, session_id) VALUES ("0", "' + t + '", "' + req.signedCookies.session_id + '")';
+    userDB.query(q, function(err) {
       if (err) throw err;
       res.json({
         status: 'ok',
         message: 'Good work!'
       });
-    });*/
+    });
   }
   else {
     res.render('login');
