@@ -86,11 +86,10 @@ app.get('/ajax/pomodoro', function (req, res) {
 });
 
 app.get('/ajax/pomodoro/complete', function (req, res) {
-  if (req.signedCookies.session_id)
-  {
+  if (req.signedCookies.session_id) {
     var t = new Date().toISOString().slice(0, 19).replace('T', ' ');
     var q = 'INSERT INTO pomodoro (type, time, session_id) VALUES ("0", "' + t + '", "' + req.signedCookies.session_id + '")';
-    userDB.query(q, function(err) {
+    userDB.query(q, function (err) {
       if (err) throw err;
       res.json({
         status: 'ok',
@@ -104,11 +103,10 @@ app.get('/ajax/pomodoro/complete', function (req, res) {
 });
 
 app.get('/ajax/pomodoro/break_complete', function (req, res) {
-  if (req.signedCookies.session_id)
-  {
+  if (req.signedCookies.session_id) {
     var t = new Date().toISOString().slice(0, 19).replace('T', ' ');
     var q = 'INSERT INTO pomodoro (type, time, session_id) VALUES ("1", "' + t + '", "' + req.signedCookies.session_id + '")';
-    userDB.query(q, function(err) {
+    userDB.query(q, function (err) {
       var json = {
         status: 'ok',
         message: 'Break complete!'
@@ -122,11 +120,10 @@ app.get('/ajax/pomodoro/break_complete', function (req, res) {
 });
 
 app.get('/ajax/pomodoro/long_break_complete', function (req, res) {
-  if (req.signedCookies.session_id)
-  {
+  if (req.signedCookies.session_id) {
     var t = new Date().toISOString().slice(0, 19).replace('T', ' ');
     var q = 'INSERT INTO pomodoro (type, time, session_id) VALUES ("2", "' + t + '", "' + req.signedCookies.session_id + '")';
-    userDB.query(q, function(err) {
+    userDB.query(q, function (err) {
       var json = {
         status: 'ok',
         message: 'Long break complete'
@@ -142,11 +139,20 @@ app.get('/ajax/pomodoro/long_break_complete', function (req, res) {
 
 app.get('/ajax/cites', function (req, res) {
   if (req.signedCookies.session_id) {
-    var json = {
+    var q = 'SELECT * FROM author';
+    userDB.query(q, function (err, results, fields) {
+      if (results.length === 0) {
+        res.send("There is no authors" + fields.toString());
+      }
+      else {
+        res.send("results are " + results.toString());
+      }
+    });
+    /*var json = {
       status: 'ok',
       name: 'cites',
       html: `
-<form id="addCiteForm" action="/ajax/addCite" method="post">
+  <form id="addCiteForm" action="/ajax/addCite" method="post">
   <h2>Add cite</h2>
   <label for="cite">Cite:</label>
   <textarea name="cite" id="cite" rows="6" cols="30" required></textarea>
@@ -158,20 +164,24 @@ app.get('/ajax/cites', function (req, res) {
   </select>
   <button>Add author</button>
   <button type="submit">Add cite</button>
-</form>`.trim(),
+  </form>`.trim(),
       js: ['/js/cites.js'],
       css: ['/css/cites.css']
     };
     res.json(json);
-  }
-  else {
+  }*/
+  } else {
     res.render('login');
   }
 });
 
 app.post('/ajax/cites/addCite', upload.array([]), function (req, res) {
-    console.log('addCite ' + JSON.stringify(req.body));
-    res.json({status: 'ok', message: 'Cite is successfully added', req: req.body});
+  console.log('addCite ' + JSON.stringify(req.body));
+  res.json({status: 'ok', message: 'Cite is successfully added', req: req.body});
+});
+
+app.post('/ajax/cites/addAuthor', function (req, res) {
+  res.json(req);
 });
 
 app.post('/api/login', function (req, res) {
