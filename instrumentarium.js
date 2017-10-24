@@ -141,35 +141,41 @@ app.get('/ajax/cites', function (req, res) {
   if (req.signedCookies.session_id) {
     var q = 'SELECT * FROM author';
     userDB.query(q, function (err, results, fields) {
-      if (results.length === 0) {
-        res.send("There is no authors" + fields.toString());
+     var selectAuthor; 
+     if (results.length === 0) {
+       	 var json = {
+	   status: 'ok',
+	   message: 'There is no authors'
+	 };
+	 selectAuthor = '<select name="author" id="author"><option value="noAuthor" selected>-</option></select>';
       }
       else {
-        res.send("results are " + results.toString());
+	selectAuthor = '<select name="author" id="author"><option value="noAuthor" selected>-</option>';
+	var n = results.length;
+	for (var i = 0; i < n; i++)
+	{
+	  selectAuthor += `<option value="${results[i].name}">${results[i].name}</option>`;
+	}
+	selectAuthor += '</select>';
       }
-    });
-    /*var json = {
+      var json = {
       status: 'ok',
       name: 'cites',
       html: `
-  <form id="addCiteForm" action="/ajax/addCite" method="post">
-  <h2>Add cite</h2>
-  <label for="cite">Cite:</label>
-  <textarea name="cite" id="cite" rows="6" cols="30" required></textarea>
-  Author:
-  <select name="author" id="author">
-    <option value="noAuthor" selected>-</option>
-    <option value="Достоевский">Достоевский</option>
-    <option value="Гоголь">Гоголь</option>
-  </select>
-  <button>Add author</button>
-  <button type="submit">Add cite</button>
-  </form>`.trim(),
+<form id="addCiteForm" action="/ajax/addCite" method="post">
+<h2>Add cite</h2>
+<label for="cite">Cite:</label>
+<textarea name="cite" id="cite" rows="6" cols="30" required></textarea>
+Author:
+${selectAuthor}
+<button>Add author</button>
+<button type="submit">Add cite</button>
+</form>`.trim(),
       js: ['/js/cites.js'],
       css: ['/css/cites.css']
     };
     res.json(json);
-  }*/
+    });
   } else {
     res.render('login');
   }
