@@ -154,7 +154,7 @@ app.get('/ajax/cites', function (req, res) {
 	var n = results.length;
 	for (var i = 0; i < n; i++)
 	{
-	  selectAuthor += `<option value="${results[i].name}">${results[i].name}</option>`;
+	  selectAuthor += `<option value="${results[i].id}">${results[i].name}</option>`;
 	}
 	selectAuthor += '</select>';
       }
