@@ -1,5 +1,6 @@
 (() => {
-  let form = document.getElementById('addCiteForm');
+  let formCite = document.getElementById('addCiteForm');
+  let formAuthor = document.getElementById('addAuthorForm');
 
   let xhrStateHandler = (xhr) => {
     function checkXHR() {
@@ -11,12 +12,20 @@
     return checkXHR;
   };
 
-  form.addEventListener('submit', function (e) {
+  function ajax(e, path, form) {
     e.preventDefault();
     let xhr = new XMLHttpRequest();
-    xhr.open('POST', 'ajax/cites/addCite', true);
+    xhr.open('POST', path, true);
     xhr.onreadystatechange = xhrStateHandler(xhr);
     let data = new FormData(form);
     xhr.send(data);
+  }
+
+  formCite.addEventListener('submit', (e) => {
+    ajax(e, 'ajax/cites/addCite', formCite);
+  });
+
+  formAuthor.addEventListener('submit', (e) => {
+    ajax(e, 'ajax/cites/addAuthor', formAuthor);
   });
 })();
