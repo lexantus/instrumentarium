@@ -167,7 +167,6 @@ app.get('/ajax/cites', function (req, res) {
 <textarea name="cite" id="cite" rows="6" cols="30" required></textarea>
 Author:
 ${selectAuthor}
-<button>Add author</button>
 <button type="submit">Add cite</button>
 </form>
 <form id="addAuthorForm" method="post" action="/ajax/cites/addAuthor">
