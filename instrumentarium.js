@@ -173,7 +173,7 @@ ${selectAuthor}
 <form id="addAuthorForm" method="post" action="/ajax/cites/addAuthor">
   <h2>Add author</h2>
   <label for="author_name">Author:</label>
-  <input id="author_name" type="text" placeholder="author name" required>
+  <input id="author_name" name="author_name" type="text" placeholder="author name" required>
   <button type="submit">Add</button>
 </form>`.trim(),
         js: ['/js/cites.js'],
