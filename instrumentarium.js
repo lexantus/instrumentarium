@@ -122,14 +122,15 @@ app.get('/ajax/pomodoro/break_complete', function (req, res) {
 app.get('/ajax/pomodoro/long_break_complete', function (req, res) {
   if (req.signedCookies.session_id) {
     var t = new Date().toISOString().slice(0, 19).replace('T', ' ');
-    var q = 'INSERT INTO pomodoro (type, time, session_id) VALUES ("2", "' + t + '", "' + req.signedCookies.session_id + '")';
-    userDB.query(q, function (err) {
-      var json = {
-        status: 'ok',
-        message: 'Long break complete'
-      };
-      res.json(json);
-    });
+    var session_id = req.signedCookies.session_id;
+    userDB.query(`insert into pomodoro (type, time, session_id) values ("2", "${t}", "${session_id}")`,
+      function (err) {
+        var json = {
+          status: 'ok',
+          message: 'Long break complete'
+        };
+        res.json(json);
+      });
   }
   else {
     res.render('login');
@@ -139,29 +140,27 @@ app.get('/ajax/pomodoro/long_break_complete', function (req, res) {
 
 app.get('/ajax/cites', function (req, res) {
   if (req.signedCookies.session_id) {
-    var q = 'SELECT * FROM author';
-    userDB.query(q, function (err, results, fields) {
-     var selectAuthor; 
-     if (results.length === 0) {
-       	 var json = {
-	   status: 'ok',
-	   message: 'There is no authors'
-	 };
-	 selectAuthor = '<select name="author" id="author"><option value="noAuthor" selected>-</option></select>';
+    userDB.query('SELECT * FROM author', function (err, results, fields) {
+      var selectAuthor;
+      if (results.length === 0) {
+        var json = {
+          status: 'ok',
+          message: 'There is no authors'
+        };
+        selectAuthor = '<select name="author" id="author"><option value="noAuthor" selected>-</option></select>';
       }
       else {
-	selectAuthor = '<select name="author" id="author"><option value="noAuthor" selected>-</option>';
-	var n = results.length;
-	for (var i = 0; i < n; i++)
-	{
-	  selectAuthor += `<option value="${results[i].id}">${results[i].name}</option>`;
-	}
-	selectAuthor += '</select>';
+        selectAuthor = '<select name="author" id="author"><option value="noAuthor" selected>-</option>';
+        var n = results.length;
+        for (var i = 0; i < n; i++) {
+          selectAuthor += `<option value="${results[i].id}">${results[i].name}</option>`;
+        }
+        selectAuthor += '</select>';
       }
       var json = {
-      status: 'ok',
-      name: 'cites',
-      html: `
+        status: 'ok',
+        name: 'cites',
+        html: `
 <form id="addCiteForm" action="/ajax/addCite" method="post">
 <h2>Add cite</h2>
 <label for="cite">Cite:</label>
@@ -170,11 +169,17 @@ Author:
 ${selectAuthor}
 <button>Add author</button>
 <button type="submit">Add cite</button>
+</form>
+<form id="formAuthor" method="post" action="/ajax/cites/addAuthor">
+  <h2>Add author</h2>
+  <label for="author_name">Author:</label>
+  <input id="author_name" type="text" placeholder="author name" required>
+  <button type="submit">Add</button>
 </form>`.trim(),
-      js: ['/js/cites.js'],
-      css: ['/css/cites.css']
-    };
-    res.json(json);
+        js: ['/js/cites.js'],
+        css: ['/css/cites.css']
+      };
+      res.json(json);
     });
   } else {
     res.render('login');
@@ -186,8 +191,8 @@ app.post('/ajax/cites/addCite', upload.array([]), function (req, res) {
   res.json({status: 'ok', message: 'Cite is successfully added', req: req.body});
 });
 
-app.post('/ajax/cites/addAuthor', function (req, res) {
-  res.json(req);
+app.post('/ajax/cites/addAuthor', upload.array([]), function (req, res) {
+  res.json({status: 'ok', message: 'Author is successfully added', req: req.body});
 });
 
 app.post('/api/login', function (req, res) {
