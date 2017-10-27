@@ -26,6 +26,12 @@
   });
 
   formAuthor.addEventListener('submit', (e) => {
-    ajax(e, 'ajax/cites/addAuthor', formAuthor);
+    //ajax(e, 'ajax/cites/addAuthor', formAuthor);
+    e.preventDefault();
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', 'ajax/cites/addAuthor', true);
+    xhr.onreadystatechange = xhrStateHandler(xhr);
+    let data = new FormData(formAuthor);
+    xhr.send(data);
   });
 })();
