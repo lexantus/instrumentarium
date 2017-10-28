@@ -192,9 +192,9 @@ app.post('/ajax/cites/addCite', upload.array([]), function (req, res) {
 
 app.post('/ajax/cites/addAuthor', upload.array([]), function (req, res) {
   if (req.signedCookies.session_id) {
-    userDB.query(`INSERT INTO author (name) VALUES ("${req.body.author_name}")`, function (err, rows, fields) {
+    userDB.query(`INSERT INTO author (name) VALUES ("${req.body.author_name}")`, function (err, rows) {
       if (err) throw err;
-      res.json({status: 'ok', message: 'Author is successfully added', req: req.body, rows: rows, fields: fields});
+      res.json({status: 'ok', message: 'Author is successfully added', req: req.body, rows: rows});
     });
   }
   else {
