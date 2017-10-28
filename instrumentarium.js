@@ -188,8 +188,10 @@ ${selectAuthor}
 app.post('/ajax/cites/addCite', upload.array([]), function (req, res) {
   console.log('addCite ' + JSON.stringify(req.body));
   if (req.signedCookies.session_id) {
-    userDB.query(`INSERT INTO cites (author_id, text) VALUES ("${req.body.author.value}", "${req.body.cite}")`);
-    res.json({status: 'ok', message: 'Cite is successfully added', req: req.body});
+    userDB.query(`INSERT INTO cites (author_id, text) VALUES (${req.body.author}, "${req.body.cite}")`, function (err, rows) {
+      if (err) throw err;
+      res.json({status: 'ok', message: 'Cite is successfully added', req: req.body});
+    });
   }
   else {
     res.render('login');
