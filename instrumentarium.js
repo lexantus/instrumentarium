@@ -153,7 +153,7 @@ app.get('/ajax/cites', function (req, res) {
         selectAuthor = '<select name="author" id="author"><option value="noAuthor" selected>-</option>';
         var n = results.length;
         for (var i = 0; i < n; i++) {
-          selectAuthor += `<option value="${results[i].id}">${results[i].name}</option>`;
+          selectAuthor += `<option value="${results[i].author}">${results[i].name}</option>`;
         }
         selectAuthor += '</select>';
       }
@@ -187,7 +187,13 @@ ${selectAuthor}
 
 app.post('/ajax/cites/addCite', upload.array([]), function (req, res) {
   console.log('addCite ' + JSON.stringify(req.body));
-  res.json({status: 'ok', message: 'Cite is successfully added', req: req.body});
+  if (req.signedCookies.session_id) {
+    userDB.query(`INSERT INTO cites (author_id, text) VALUES (${req.body.author_id}, ${req.body.cite})`);
+    res.json({status: 'ok', message: 'Cite is successfully added', req: req.body});
+  }
+  else {
+    res.render('login');
+  }
 });
 
 app.post('/ajax/cites/addAuthor', upload.array([]), function (req, res) {
