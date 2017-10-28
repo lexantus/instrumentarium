@@ -23,7 +23,7 @@
 
   function parseAuthor(jsonStr) {
     let json = JSON.parse(jsonStr);
-    let s = formCite.getElementsByTagName('select');
+    let s = formCite.getElementsByTagName('select')[0];
     let option = document.createElement('option');
     option.value = json.rows.insertId;
     option.innerHTML = json.req.author_name;
