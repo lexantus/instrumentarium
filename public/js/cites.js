@@ -12,11 +12,11 @@
     return checkXHR;
   };
 
-  function ajax(e, path, form) {
+  function ajax(e, path, form, callback) {
     e.preventDefault();
     let xhr = new XMLHttpRequest();
     xhr.open('POST', path, true);
-    xhr.onreadystatechange = xhrStateHandler(xhr);
+    xhr.onreadystatechange = xhrStateHandler(xhr, callback);
     let data = new FormData(form);
     xhr.send(data);
   }
