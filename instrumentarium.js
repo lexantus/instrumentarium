@@ -167,7 +167,7 @@ app.get('/ajax/cites', function (req, res) {
 <textarea name="cite" id="cite" rows="6" cols="30" required></textarea>
 Author:
 ${selectAuthor}
-<button type="submit">Add cite</button>
+<button type="submit">Add</button>
 </form>
 <form id="addAuthorForm" method="post" action="/ajax/cites/addAuthor">
   <h2>Add author</h2>
@@ -191,7 +191,15 @@ app.post('/ajax/cites/addCite', upload.array([]), function (req, res) {
 });
 
 app.post('/ajax/cites/addAuthor', upload.array([]), function (req, res) {
-  res.json({status: 'ok', message: 'Author is successfully added', req: req.body});
+  if (req.signedCookies.session_id) {
+    userDB.query(`INSERT INTO author (name) VALUES ("${req.body.author_name}")`, function (err, rows, fields) {
+      if (err) throw err;
+      res.json({status: 'ok', message: 'Author is successfully added', req: rows});
+    });
+  }
+  else {
+    res.render('login');
+  }
 });
 
 app.post('/api/login', function (req, res) {
