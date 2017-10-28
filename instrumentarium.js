@@ -147,13 +147,13 @@ app.get('/ajax/cites', function (req, res) {
           status: 'ok',
           message: 'There is no authors'
         };
-        selectAuthor = '<select name="author" id="author"><option value="noAuthor" selected>-</option></select>';
+        selectAuthor = '<select name="author" id="author"><option value="-1" selected>-</option></select>';
       }
       else {
-        selectAuthor = '<select name="author" id="author"><option value="noAuthor" selected>-</option>';
+        selectAuthor = '<select name="author" id="author"><option value="-1" selected>-</option>';
         var n = results.length;
         for (var i = 0; i < n; i++) {
-          selectAuthor += `<option value="${results[i].author}">${results[i].name}</option>`;
+          selectAuthor += `<option value="${results[i].author_id}">${results[i].name}</option>`;
         }
         selectAuthor += '</select>';
       }
@@ -188,7 +188,7 @@ ${selectAuthor}
 app.post('/ajax/cites/addCite', upload.array([]), function (req, res) {
   console.log('addCite ' + JSON.stringify(req.body));
   if (req.signedCookies.session_id) {
-    userDB.query(`INSERT INTO cites (author_id, text) VALUES (1, "${req.body.cite}")`, function (err, rows) {
+    userDB.query(`INSERT INTO cites (author_id, text) VALUES (${req.body.author}, "${req.body.cite}")`, function (err, rows) {
       if (err) throw err;
       res.json({status: 'ok', message: 'Cite is successfully added', req: req.body});
     });
