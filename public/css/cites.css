@@ -20,7 +20,7 @@ form h2 {
     user-select: none;
     cursor: default;
 }
-form textarea, form select {
+form textarea, form select, form input {
     box-sizing: border-box;
     margin-bottom: 20px;
     margin-top: 10px;
