@@ -31,8 +31,16 @@
     s.appendChild(option);
   }
 
+  function parseCite(jsonStr) {
+    let json = JSON.parse(jsonStr);
+    if (json.status === 'ok') {
+      let ta = formCite.getElementsByTagName('textarea');
+      ta.innerHTML = '';
+    }
+  }
+
   formCite.addEventListener('submit', (e) => {
-    ajax(e, 'ajax/cites/addCite', formCite);
+    ajax(e, 'ajax/cites/addCite', formCite, parseCite);
   });
 
   formAuthor.addEventListener('submit', (e) => {
