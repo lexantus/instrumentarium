@@ -38,6 +38,7 @@
     if (json.status === 'ok') {
       let ta = formCite.getElementsByTagName('textarea')[0];
       ta.value = '';
+      ta.focus();
     }
   }
 
