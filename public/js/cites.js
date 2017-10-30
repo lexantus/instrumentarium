@@ -27,8 +27,8 @@
     let option = document.createElement('option');
     option.value = json.rows.insertId;
     option.innerHTML = json.req.author_name;
+    option.selected = 'selected';
     s.appendChild(option);
-    formCite.getElementsByTagName('select').value = option.value;
   }
 
   formCite.addEventListener('submit', (e) => {
