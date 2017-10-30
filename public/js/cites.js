@@ -36,7 +36,7 @@
   function parseCite(jsonStr) {
     let json = JSON.parse(jsonStr);
     if (json.status === 'ok') {
-      let ta = formCite.getElementsByTagName('textarea');
+      let ta = formCite.getElementsByTagName('textarea')[0];
       ta.value = '';
     }
   }
