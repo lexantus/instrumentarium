@@ -23,19 +23,21 @@
 
   function parseAuthor(jsonStr) {
     let json = JSON.parse(jsonStr);
-    let s = formCite.getElementsByTagName('select')[0];
-    let option = document.createElement('option');
-    option.value = json.rows.insertId;
-    option.innerHTML = json.req.author_name;
-    option.selected = 'selected';
-    s.appendChild(option);
+    if (json.status === 'ok') {
+      let s = formCite.getElementsByTagName('select')[0];
+      let option = document.createElement('option');
+      option.value = json.rows.insertId;
+      option.innerHTML = json.req.author_name;
+      option.selected = 'selected';
+      s.appendChild(option);
+    }
   }
 
   function parseCite(jsonStr) {
     let json = JSON.parse(jsonStr);
     if (json.status === 'ok') {
       let ta = formCite.getElementsByTagName('textarea');
-      ta.innerHTML = '';
+      ta.value = '';
     }
   }
 
