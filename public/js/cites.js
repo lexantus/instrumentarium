@@ -93,6 +93,7 @@
       tr.appendChild(tdText);
       tr.appendChild(tdName);
       tbl.appendChild(tr);
+      document.getElementById('cites').appendChild(tbl);
     });
   }
 

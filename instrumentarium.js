@@ -70,11 +70,13 @@ app.get('/ajax/pomodoro', function (req, res) {
       status: 'ok',
       name: 'pomodoro',
       html: `
+<div id="pomodoro">
 <div id="clock">00:00</div>
 <div id="work" class="icon">start</div>
 <div id="short_break" class="icon">short break</div>
 <div id="long_break" class="icon">long break</div>
-<div id="result"></div>`.trim(),
+<div id="result"></div>
+</div>`.trim(),
       js: ['/js/pomodoro.js'],
       css: ['/css/pomodoro.css']
     };
@@ -151,6 +153,7 @@ app.get('/ajax/cites', function (req, res) {
       json.status = 'ok';
       json.name = 'cites';
       json.html = `
+<div id="cites">
 <form id="addCiteForm" action="/ajax/addCite" method="post">
 <h2>Add cite</h2>
 <label for="cite">Cite:</label>
@@ -165,7 +168,8 @@ ${selectAuthor}
   <input id="author_name" name="author_name" type="text" placeholder="author name" required>
   <button type="submit">Add</button>
 </form>
-<button id="btnGetCites" type="button">Get cites</button>`.trim();
+<button id="btnGetCites" type="button">Get cites</button>
+</div>`.trim();
       json.js = ['/js/cites.js'];
       json.css = ['/css/cites.css'];
       res.json(json);
