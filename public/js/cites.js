@@ -1,6 +1,7 @@
 (() => {
   let formCite = document.getElementById('addCiteForm');
   let formAuthor = document.getElementById('addAuthorForm');
+  let btnGetCites = document.getElementById('btnGetCites');
 
   let xhrStateHandler = (xhr, parseCallback) => {
     function checkXHR() {
@@ -12,13 +13,18 @@
     return checkXHR;
   };
 
-  function ajax(e, path, form, callback) {
+  function ajax(e, path, form, callback, method) {
     e.preventDefault();
     let xhr = new XMLHttpRequest();
-    xhr.open('POST', path, true);
+    xhr.open(!method ? 'POST' : 'GET', path, true);
     xhr.onreadystatechange = xhrStateHandler(xhr, callback);
-    let data = new FormData(form);
-    xhr.send(data);
+    if (form) {
+      let data = new FormData(form);
+      xhr.send(data);
+    }
+    else {
+      xhr.send();
+    }
   }
 
   function parseAuthor(jsonStr) {
@@ -33,7 +39,7 @@
     }
   }
 
-  function parseCite(jsonStr) {
+  function parseAddCite(jsonStr) {
     let json = JSON.parse(jsonStr);
     if (json.status === 'ok') {
       let ta = formCite.getElementsByTagName('textarea')[0];
@@ -42,11 +48,22 @@
     }
   }
 
+  function parseCites(jsonStr) {
+    let json = JSON.parse(jsonStr);
+    if (json.status === 'ok') {
+      console.log(jsonStr.cites);
+    }
+  }
+
   formCite.addEventListener('submit', (e) => {
-    ajax(e, 'ajax/cites/addCite', formCite, parseCite);
+    ajax(e, 'ajax/cites/addCite', formCite, parseAddCite);
   });
 
   formAuthor.addEventListener('submit', (e) => {
     ajax(e, 'ajax/cites/addAuthor', formAuthor, parseAuthor);
+  });
+
+  btnGetCites.addEventListener('click', (e) => {
+    ajax(e, 'ajax/cites/get', null, parseCites)
   });
 })();
