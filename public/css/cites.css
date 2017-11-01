@@ -36,27 +36,3 @@ form textarea, form select, form input {
 form select {
     padding: 0 10px;
 }
-
-button {
-    height: 40px;
-    border: 1px solid black;
-    border-radius: 5px;
-    overflow: hidden;
-    cursor: pointer;
-    background: #777;
-    color: #fff;
-}
-
-button:hover {
-    background: #7f7f7f;
-}
-
-button {
-    width: 120px;
-    height: 50px;
-    background: green;
-}
-
-button {
-    background: #008f00;
-}
