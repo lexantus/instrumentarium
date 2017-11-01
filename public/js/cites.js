@@ -51,7 +51,7 @@
   function parseCites(jsonStr) {
     let json = JSON.parse(jsonStr);
     if (json.status === 'ok') {
-      console.log(jsonStr.rows);
+      console.log(json.rows);
     }
   }
 
