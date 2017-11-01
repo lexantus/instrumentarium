@@ -47,48 +47,62 @@ div.icon.money:after {
   content: "Money";
   text-shadow: 36px 36px 0px #010, 35px 35px 0px #010, 34px 34px 0px #010, 33px 33px 0px #010, 32px 32px 0px #010, 31px 31px 0px #010, 30px 30px 0px #010, 29px 29px 0px #010, 28px 28px 0px #010, 27px 27px 0px #010, 26px 26px 0px #010, 25px 25px 0px #010, 24px 24px 0px #010, 23px 23px 0px #010, 22px 22px 0px #010, 21px 21px 0px #010, 20px 20px 0px #010, 19px 19px 0px #010, 18px 18px 0px #010, 17px 17px 0px #010, 16px 16px 0px #010, 15px 15px 0px #010, 14px 14px 0px #010, 13px 13px 0px #010, 12px 12px 0px #010, 11px 11px 0px #010, 10px 10px 0px #010, 9px 9px 0px #010, 8px 8px 0px #010, 7px 7px 0px #010, 6px 6px 0px #010, 5px 5px 0px #010, 4px 4px 0px #010, 3px 3px 0px #010, 2px 2px 0px #010, 1px 1px 0px #010;
 }
+
 div.icon.money:hover {
   background: #004d00;
 }
+
 div.icon.money:active {
   border: 2px solid #030;
 }
+
 div.icon.cites {
   background: #009;
 }
+
 div.icon.cites:after {
   content: "Cites";
   text-shadow: 36px 36px 0px #00004d, 35px 35px 0px #00004d, 34px 34px 0px #00004d, 33px 33px 0px #00004d, 32px 32px 0px #00004d, 31px 31px 0px #00004d, 30px 30px 0px #00004d, 29px 29px 0px #00004d, 28px 28px 0px #00004d, 27px 27px 0px #00004d, 26px 26px 0px #00004d, 25px 25px 0px #00004d, 24px 24px 0px #00004d, 23px 23px 0px #00004d, 22px 22px 0px #00004d, 21px 21px 0px #00004d, 20px 20px 0px #00004d, 19px 19px 0px #00004d, 18px 18px 0px #00004d, 17px 17px 0px #00004d, 16px 16px 0px #00004d, 15px 15px 0px #00004d, 14px 14px 0px #00004d, 13px 13px 0px #00004d, 12px 12px 0px #00004d, 11px 11px 0px #00004d, 10px 10px 0px #00004d, 9px 9px 0px #00004d, 8px 8px 0px #00004d, 7px 7px 0px #00004d, 6px 6px 0px #00004d, 5px 5px 0px #00004d, 4px 4px 0px #00004d, 3px 3px 0px #00004d, 2px 2px 0px #00004d, 1px 1px 0px #00004d;
 }
+
 div.icon.cites:hover {
   background: #0000b3;
 }
+
 div.icon.cites:active {
   border: 2px solid #009;
 }
+
 div.icon.wallpapers {
   background: #670067;
 }
+
 div.icon.wallpapers:after {
   content: "Wallpapers";
   text-shadow: 36px 36px 0px #4d004d, 35px 35px 0px #4d004d, 34px 34px 0px #4d004d, 33px 33px 0px #4d004d, 32px 32px 0px #4d004d, 31px 31px 0px #4d004d, 30px 30px 0px #4d004d, 29px 29px 0px #4d004d, 28px 28px 0px #4d004d, 27px 27px 0px #4d004d, 26px 26px 0px #4d004d, 25px 25px 0px #4d004d, 24px 24px 0px #4d004d, 23px 23px 0px #4d004d, 22px 22px 0px #4d004d, 21px 21px 0px #4d004d, 20px 20px 0px #4d004d, 19px 19px 0px #4d004d, 18px 18px 0px #4d004d, 17px 17px 0px #4d004d, 16px 16px 0px #4d004d, 15px 15px 0px #4d004d, 14px 14px 0px #4d004d, 13px 13px 0px #4d004d, 12px 12px 0px #4d004d, 11px 11px 0px #4d004d, 10px 10px 0px #4d004d, 9px 9px 0px #4d004d, 8px 8px 0px #4d004d, 7px 7px 0px #4d004d, 6px 6px 0px #4d004d, 5px 5px 0px #4d004d, 4px 4px 0px #4d004d, 3px 3px 0px #4d004d, 2px 2px 0px #4d004d, 1px 1px 0px #4d004d;
 }
+
 div.icon.wallpapers:hover {
   background: #850085;
 }
+
 div.icon.wallpapers:active {
   border: 2px solid purple;
 }
+
 div.icon.birthdays {
   background: maroon;
 }
+
 div.icon.birthdays:after {
   content: "Birthdays";
   text-shadow: 36px 36px 0px #660000, 35px 35px 0px #660000, 34px 34px 0px #660000, 33px 33px 0px #660000, 32px 32px 0px #660000, 31px 31px 0px #660000, 30px 30px 0px #660000, 29px 29px 0px #660000, 28px 28px 0px #660000, 27px 27px 0px #660000, 26px 26px 0px #660000, 25px 25px 0px #660000, 24px 24px 0px #660000, 23px 23px 0px #660000, 22px 22px 0px #660000, 21px 21px 0px #660000, 20px 20px 0px #660000, 19px 19px 0px #660000, 18px 18px 0px #660000, 17px 17px 0px #660000, 16px 16px 0px #660000, 15px 15px 0px #660000, 14px 14px 0px #660000, 13px 13px 0px #660000, 12px 12px 0px #660000, 11px 11px 0px #660000, 10px 10px 0px #660000, 9px 9px 0px #660000, 8px 8px 0px #660000, 7px 7px 0px #660000, 6px 6px 0px #660000, 5px 5px 0px #660000, 4px 4px 0px #660000, 3px 3px 0px #660000, 2px 2px 0px #660000, 1px 1px 0px #660000;
 }
+
 div.icon.birthdays:hover {
   background: #ff0505;
 }
+
 div.icon.birthdays:active {
   border: 2px solid red;
 }
