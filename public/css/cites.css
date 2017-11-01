@@ -37,7 +37,8 @@ form textarea, form select, form input {
 form select {
     padding: 0 10px;
 }
-form button {
+
+button {
     height: 40px;
     border: 1px solid black;
     border-radius: 5px;
@@ -46,14 +47,17 @@ form button {
     background: #777;
     color: #fff;
 }
-form button:hover {
+
+button:hover {
     background: #7f7f7f;
 }
-form button[type="submit"] {
+
+button[type="submit"] {
     width: 120px;
     height: 50px;
     background: green;
 }
-form button[type="submit"]:hover {
+
+button[type="submit"]:hover {
     background: #008f00;
 }
