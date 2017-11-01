@@ -78,7 +78,9 @@
       tbl.appendChild(ths);
     }
 
-    tbl.getElementsByTagName('td').forEach(function (element) {
+    let tds = tbl.getElementsByTagName('td');
+    let tdList = Array.prototype.slice.call(tds);
+    tdList.forEach(function (element) {
       tbl.removeChild(element);
     });
 
