@@ -54,7 +54,7 @@
     let json = JSON.parse(jsonStr);
     if (json.status === 'ok') {
       console.log(json.rows);
-      updateCitesTable(rows);
+      updateCitesTable(json.rows);
     }
   }
 
