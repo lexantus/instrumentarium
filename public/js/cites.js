@@ -54,7 +54,44 @@
     let json = JSON.parse(jsonStr);
     if (json.status === 'ok') {
       console.log(json.rows);
+      updateCitesTable(rows);
     }
+  }
+
+  function updateCitesTable(rows) {
+    const TABLE_ID = 'tblCites';
+    let tbl = document.getElementById(TABLE_ID);
+    if (!tbl) {
+      tbl = document.createElement('table');
+      tbl.id = TABLE_ID;
+      let ths = document.createElement('tr');
+
+      let thCite = document.createElement('th');
+      thCite.innerHTML = 'Cite';
+
+      let thAuthor = document.createElement('th');
+      thAuthor.innerHTML = 'Author';
+
+      ths.appendChild(thCite);
+      ths.appendChild(thAuthor);
+
+      tbl.appendChild(ths);
+    }
+
+    tbl.getElementsByTagName('td').forEach(function (element) {
+      tbl.removeChild(element);
+    });
+
+    rows.forEach(function (row) {
+      let tdText = document.createElement('td');
+      tdText.innerHTML = row.text;
+      let tdName = document.createElement('td');
+      tdName.innerHTML = row.name;
+      let tr = document.createElement('tr');
+      tr.appendChild(tdText);
+      tr.appendChild(tdName);
+      tbl.appendChild(tr);
+    });
   }
 
   formCite.addEventListener('submit', (e) => {
