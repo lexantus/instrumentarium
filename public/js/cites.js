@@ -36,6 +36,8 @@
       option.innerHTML = json.req.author_name;
       option.selected = 'selected';
       s.appendChild(option);
+
+      document.getElementById('author_name').value = "";
     }
   }
 
