@@ -81,7 +81,7 @@
     let tds = tbl.getElementsByTagName('td');
     let tdList = Array.prototype.slice.call(tds);
     tdList.forEach(function (element) {
-      tbl.removeChild(element);
+      element.parentElement.removeChild(element);
     });
 
     rows.forEach(function (row) {
