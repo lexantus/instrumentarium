@@ -139,27 +139,18 @@ app.get('/ajax/pomodoro/long_break_complete', function (req, res) {
 
 app.get('/ajax/cites', function (req, res) {
   if (req.signedCookies.session_id) {
-    userDB.query('SELECT * FROM author', function (err, results, fields) {
-      var selectAuthor;
-      if (results.length === 0) {
-        var json = {
-          status: 'ok',
-          message: 'There is no authors'
-        };
-        selectAuthor = '<select name="author" id="author"><option value="-1" selected>-</option></select>';
+    userDB.query('SELECT * FROM author', function (err, results) {
+      var selectAuthor = '<select name="author" id="author"><option value="-1" selected>-</option>';
+      var n = results.length;
+      for (var i = 0; i < n; i++) {
+        selectAuthor += `<option value="${results[i].id}">${results[i].name}</option>`;
       }
-      else {
-        selectAuthor = '<select name="author" id="author"><option value="-1" selected>-</option>';
-        var n = results.length;
-        for (var i = 0; i < n; i++) {
-          selectAuthor += `<option value="${results[i].id}">${results[i].name}</option>`;
-        }
-        selectAuthor += '</select>';
-      }
-      var json = {
-        status: 'ok',
-        name: 'cites',
-        html: `
+      selectAuthor += '</select>';
+
+      var json = {};
+      json.status = 'ok';
+      json.name = 'cites';
+      json.html = `
 <form id="addCiteForm" action="/ajax/addCite" method="post">
 <h2>Add cite</h2>
 <label for="cite">Cite:</label>
@@ -174,10 +165,9 @@ ${selectAuthor}
   <input id="author_name" name="author_name" type="text" placeholder="author name" required>
   <button type="submit">Add</button>
 </form>
-<button id="btnGetCites" type="button">Get cites</button>`.trim(),
-        js: ['/js/cites.js'],
-        css: ['/css/cites.css']
-      };
+<button id="btnGetCites" type="button">Get cites</button>`.trim();
+      json.js = ['/js/cites.js'];
+      json.css = ['/css/cites.css'];
       res.json(json);
     });
   } else {
@@ -185,11 +175,11 @@ ${selectAuthor}
   }
 });
 
-app.get('/ajax/cites/get', function (req, res) {
+app.post('/ajax/cites/get', function (req, res) {
   if (req.signedCookies.session_id) {
     userDB.query(`SELECT text, name FROM cites JOIN author ON cites.author_id = author.ida`, function (err, rows) {
       if (err) throw err;
-      res.json({status: 'ok', cites: rows});
+      res.json({status: 'ok', rows: rows});
     });
   } else {
     res.render('login');

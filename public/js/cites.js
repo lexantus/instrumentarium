@@ -13,10 +13,10 @@
     return checkXHR;
   };
 
-  function ajax(e, path, form, callback, method) {
+  function ajax(e, path, form, callback) {
     e.preventDefault();
     let xhr = new XMLHttpRequest();
-    xhr.open(!method ? 'POST' : 'GET', path, true);
+    xhr.open('POST', path, true);
     xhr.onreadystatechange = xhrStateHandler(xhr, callback);
     if (form) {
       let data = new FormData(form);
@@ -51,7 +51,7 @@
   function parseCites(jsonStr) {
     let json = JSON.parse(jsonStr);
     if (json.status === 'ok') {
-      console.log(jsonStr.cites);
+      console.log(jsonStr.rows);
     }
   }
 
