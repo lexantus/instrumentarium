@@ -1,18 +1,19 @@
-var http = require('http');
 var express = require('express');
+var path = require('path');
 var bodyParser = require('body-parser');
 var multer = require('multer');
 var cookieParser = require('cookie-parser');
 var credentials = require('./credentials');
 var mysql = require('mysql');
 var handlebars = require('express-handlebars').create({
-  defaultLayout: 'main'
+  defaultLayout: path.join(__dirname, 'views', 'layouts', 'main')
 });
 
 var app = express();
 var upload = multer();
 
 app.engine('handlebars', handlebars.engine);
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'handlebars');
 app.set('x-powered-by', false);
 
@@ -21,7 +22,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(bodyParser.urlencoded({
   extended: true
@@ -242,4 +243,5 @@ app.post('/api/login', function (req, res) {
   });
 });
 
-app.listen(80, '188.127.251.91');
+//app.listen(80, '188.127.251.91');
+module.exports = app;
