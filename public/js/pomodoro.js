@@ -34,7 +34,7 @@ class Pomodoro {
     this.xhrLongBreakComplete.onreadystatechange = () => {
       if (this.xhrLongBreakComplete.status === 200 && this.xhrLongBreakComplete.readyState === 4) {
         console.log("long break: " + this.xhrLongBreakComplete.responseText);
-        addSVG('long_break.svg');
+        addSVG('dinner.svg');
       }
     };
 
@@ -50,7 +50,7 @@ class Pomodoro {
             addSVG('short_break.svg');
           }
           else if (value.type === '2') {
-            addSVG('long_break.svg');
+            addSVG('dinner.svg');
           }
         }
       }
@@ -92,7 +92,7 @@ class Pomodoro {
 
   startLongBreak() {
     this.xhrLongBreakComplete.open('GET', `/ajax/pomodoro/long_break_complete`, true);
-    this.startAction(600, this.xhrLongBreakComplete);
+    this.startAction(3600, this.xhrLongBreakComplete);
   }
 }
 
