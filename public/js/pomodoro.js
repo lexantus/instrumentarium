@@ -6,9 +6,9 @@ class Pomodoro {
 
     let svgContainer = document.getElementById('result');
 
-    let addSVG = (svg)=>{
+    let addSVG = (svg) => {
       let el = document.createElement('img');
-      el.src=`/svg/${svg}`;
+      el.src = `/svg/${svg}`;
       el.style.width = '100px';
       el.style.height = '100px';
       svgContainer.appendChild(el);
@@ -35,6 +35,24 @@ class Pomodoro {
       if (this.xhrLongBreakComplete.status === 200 && this.xhrLongBreakComplete.readyState === 4) {
         console.log("long break: " + this.xhrLongBreakComplete.responseText);
         addSVG('long_break.svg');
+      }
+    };
+
+    this.getNowState = new XMLHttpRequest();
+    this.getNowState.onreadystatechange = () => {
+      if (this.getNowState.status === 200 && this.getNowState.readyState === 4) {
+        let rows = JSON.parse(this.getNowState.responseText).rows;
+        for (let value of rows) {
+          if (value.type === '0') {
+            addSVG('tomato.svg');
+          }
+          else if (value.type === '1') {
+            addSVG('short_break.svg');
+          }
+          else if (value.type === '2') {
+            addSVG('long_break.svg');
+          }
+        }
       }
     };
 
@@ -89,8 +107,13 @@ let pomodoro = new Pomodoro((seconds) => {
   if (mins < 10) mins = '0' + mins;
   if (sec < 10) sec = '0' + sec;
   clockDiv.innerHTML = mins + ':' + sec;
-  document.getElementsByTagName('title')[ 0 ].innerHTML = clockDiv.innerHTML;
+  document.getElementsByTagName('title')[0].innerHTML = clockDiv.innerHTML;
 });
+
+let date = new Date();
+pomodoro.getNowState.open('GET', `/ajax/pomodoro/${date.getUTCFullYear()}/${date.getUTCMonth()}/${date.getUTCDate()}`);
+pomodoro.getNowState.send();
+
 
 btnWork.addEventListener('click', () => {
   pomodoro.startPomodoro();
@@ -104,6 +127,6 @@ btnLongBreak.addEventListener('click', () => {
   pomodoro.startLongBreak();
 });
 
-document.getElementsByTagName('title')[ 0 ].innerHTML = 'Pomodoro';
-document.getElementsByTagName('h1')[ 0 ].innerHTML = 'Pomodoro';
+document.getElementsByTagName('title')[0].innerHTML = 'Pomodoro';
+document.getElementsByTagName('h1')[0].innerHTML = 'Pomodoro';
 

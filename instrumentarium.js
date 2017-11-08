@@ -87,20 +87,14 @@ app.get('/ajax/pomodoro', function (req, res) {
 
 app.get('/ajax/pomodoro/:year/:month/:day', function (req, res) {
   var day = req.params.day,
-    month = req.params.month,
+    month = +req.params.month + 1,
     year = req.params.year;
 
   var q = `select type, time from pomodoro where DATE(time)='${year}-${month}-${day}' AND session_id LIKE "${req.signedCookies.session_id}"`;
   console.log(q);
-  userDB.query(q, function(err, rows){
+  userDB.query(q, function (err, rows) {
     if (err) throw err;
-    if (rows.length)
-    {
-       res.json({status: 'ok', rows: rows});
-    }
-    else {
-       res.json({status: 'ok', message: `No records for date ${year}-${month}-${day}`});
-    }
+    res.json({status: 'ok', rows: rows});
   });
 });
 
@@ -185,17 +179,17 @@ app.post('/ajax/cites/get', function (req, res) {
 });
 
 app.post('/ajax/cites/addCite', upload.array([]), function (req, res) {
-    userDB.query(`INSERT INTO cites (author_id, text) VALUES (${req.body.author}, "${req.body.cite}")`, function (err, rows) {
-      if (err) throw err;
-      res.json({status: 'ok', message: 'Cite is successfully added', req: req.body});
-    });
+  userDB.query(`INSERT INTO cites (author_id, text) VALUES (${req.body.author}, "${req.body.cite}")`, function (err, rows) {
+    if (err) throw err;
+    res.json({status: 'ok', message: 'Cite is successfully added', req: req.body});
+  });
 });
 
 app.post('/ajax/cites/addAuthor', upload.array([]), function (req, res) {
-    userDB.query(`INSERT INTO author (name) VALUES ("${req.body.author_name}")`, function (err, rows) {
-      if (err) throw err;
-      res.json({status: 'ok', message: 'Author is successfully added', req: req.body, rows: rows});
-    });
+  userDB.query(`INSERT INTO author (name) VALUES ("${req.body.author_name}")`, function (err, rows) {
+    if (err) throw err;
+    res.json({status: 'ok', message: 'Author is successfully added', req: req.body, rows: rows});
+  });
 });
 
 app.post('/api/login', function (req, res) {
