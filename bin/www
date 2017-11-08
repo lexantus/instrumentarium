@@ -15,21 +15,25 @@ server.on('error', onError);
 server.listen(port, host);
 
 function onError(error) {
-    switch (error.code) {
-      case 'EACCES':
-          console.error('Type sudo!!!');
-          process.exit(1);
-          break;
-      case 'EADDRINUSE':
-          console.error('Address in use ' + host);
-          process.exit(1);
-          break;
-      default:
-          throw error;
-    }
+  switch (error.code) {
+    case 'EACCES':
+      console.error('Type sudo!!!');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(`Address in use ${host}`);
+      process.exit(1);
+      break;
+    case 'EADDRNOTAVAIL':
+      console.error(`Address ${host} not available from this machine. Try localhost instead.`);
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
 }
 
 function onListening() {
-    var addr = server.address();
-    console.log('Start server ' + JSON.stringify(addr));
+  var addr = server.address();
+  console.log('Start server ' + JSON.stringify(addr));
 }
