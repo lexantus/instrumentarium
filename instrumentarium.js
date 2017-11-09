@@ -50,17 +50,29 @@ app.use(function (req, res, next) {
   }
   else {
     console.log("[LOGIN MIDDLEWARE] BAD session_id = " + req.signedCookies.session_id);
-    applications.getAppDataBySessionId(userDB, req.signedCookies.session_id, function (apps) {
-      console.log(apps);
-      app.locals.styles = '<link rel="stylesheet" href="/css/app.css">';
-      res.render('apps');
-    }, function (msg) {
-      console.log(msg);
-      app.locals.styles = '<link rel="stylesheet" href="/css/login.css">';
-      res.render('login', {
-        header: "Авторизуйтесь",
-        msg: msg
-      });
+    Login.execute(userDB, req, res, function (user) {
+      if (user) {
+        applications.getAppDataBySessionId(userDB, user.session_id, function (apps) {
+          res.cookie('session_id', user.session_id, {
+            signed: true
+          });
+          console.log(apps);
+          app.locals.styles = '<link rel="stylesheet" href="/css/app.css">';
+          res.redirect('/');
+        }, function (msg) {
+          console.log(msg);
+          app.locals.styles = '<link rel="stylesheet" href="/css/login.css">';
+          res.render('login', {
+            header: "Авторизуйтесь",
+            msg: msg
+          });
+        });
+      } else {
+        app.locals.styles = '<link rel="stylesheet" href="/css/login.css">';
+        res.render('login', {
+          header: "Попробуйте еще раз"
+        });
+      }
     });
   }
 });
@@ -187,33 +199,6 @@ app.post('/ajax/cites/addAuthor', upload.array([]), function (req, res) {
   userDB.query(`INSERT INTO author (name) VALUES ("${req.body.author_name}")`, function (err, rows) {
     if (err) throw err;
     res.json({status: 'ok', message: 'Author is successfully added', req: req.body, rows: rows});
-  });
-});
-
-app.post('/api/login', function (req, res) {
-  Login.execute(userDB, req, res, function (user) {
-    if (user) {
-      applications.getAppDataBySessionId(userDB, user.session_id, function (apps) {
-        res.cookie('session_id', user.session_id, {
-          signed: true
-        });
-        console.log(apps);
-        app.locals.styles = '<link rel="stylesheet" href="/css/app.css">';
-        res.redirect('/');
-      }, function (msg) {
-        console.log(msg);
-        app.locals.styles = '<link rel="stylesheet" href="/css/login.css">';
-        res.render('login', {
-          header: "Авторизуйтесь",
-          msg: msg
-        });
-      });
-    } else {
-      app.locals.styles = '<link rel="stylesheet" href="/css/login.css">';
-      res.render('login', {
-        header: "Попробуйте еще раз"
-      });
-    }
   });
 });
 
