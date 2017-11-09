@@ -9,7 +9,7 @@ var handlebars = require('express-handlebars').create({
   defaultLayout: path.join(__dirname, 'views', 'layouts', 'main')
 });
 
-var winston = require('winston');
+const { createLogger, format, transports } = require('winston');
 
 var app = express();
 var upload = multer();
@@ -22,11 +22,11 @@ userDB.connect();
 
 var applications = require('./apps');
 
-const logger = winston.createLogger({
+const logger = createLogger({
   transports: [
-    new winston.transports.Console(),
-    new winston.transports.File({filename: 'winston.log'}),
-    new winston.transports.File({filename: 'error_winston.log', level: 'error'})
+    new transports.Console(),
+    new transports.File({filename: 'winston.log'}),
+    new transports.File({filename: 'error_winston.log', level: 'error'})
   ]
 });
 
