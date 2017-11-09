@@ -15,7 +15,7 @@ exports.getAppDataBySessionId = function(db, session_id, success, fail) {
   var qry = sprintf('SELECT %s FROM %s WHERE %s', clms, tbl, wr);
   console.log(qry);
 
-  db.query(qry, function(err, rows, fields) {
+  db.query(qry, function(err, rows) {
     if (err) throw err;
     if (rows.length === 1) {
       clms = "name, db, scripts_folder, views_folder, icon";

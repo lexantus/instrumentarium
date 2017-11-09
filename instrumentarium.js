@@ -12,6 +12,14 @@ var handlebars = require('express-handlebars').create({
 var app = express();
 var upload = multer();
 
+var Login = require('./Login');
+var UserDB = require('./UserDB');
+
+var userDB = mysql.createConnection(UserDB.get());
+userDB.connect();
+
+var applications = require('./apps');
+
 app.engine('handlebars', handlebars.engine);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'handlebars');
@@ -38,35 +46,23 @@ app.use(cookieParser(credentials.cookieSecret, {
 app.use(function (req, res, next) {
   if (req.signedCookies.session_id) {
     console.log("[LOGIN MIDDLEWARE] req.url " + req.url + " session_id " + req.signedCookies.session_id);
+    next();
   }
   else {
-    console.log("[LOGIN MIDDLEWARE] session_id = " + req.signedCookies.session_id);
-  }
-  next();
-});
-
-var Login = require('./Login');
-var UserDB = require('./UserDB');
-
-var userDB = mysql.createConnection(UserDB.get());
-userDB.connect();
-
-var applications = require('./apps');
-
-app.get('/', function (req, res) {
-  console.log("[Route] " + req.url);
-  applications.getAppDataBySessionId(userDB, req.signedCookies.session_id, function (apps) {
-    console.log(apps);
-    app.locals.styles = '<link rel="stylesheet" href="/css/app.css">';
-    res.render('apps');
-  }, function (msg) {
-    console.log(msg);
-    app.locals.styles = '<link rel="stylesheet" href="/css/login.css">';
-    res.render('login', {
-      header: "Авторизуйтесь",
-      msg: msg
+    console.log("[LOGIN MIDDLEWARE] BAD session_id = " + req.signedCookies.session_id);
+    applications.getAppDataBySessionId(userDB, req.signedCookies.session_id, function (apps) {
+      console.log(apps);
+      app.locals.styles = '<link rel="stylesheet" href="/css/app.css">';
+      res.render('apps');
+    }, function (msg) {
+      console.log(msg);
+      app.locals.styles = '<link rel="stylesheet" href="/css/login.css">';
+      res.render('login', {
+        header: "Авторизуйтесь",
+        msg: msg
+      });
     });
-  });
+  }
 });
 
 app.get('/ajax/pomodoro', function (req, res) {
