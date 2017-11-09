@@ -56,6 +56,21 @@ app.use(function (req, res, next) {
   }
 });
 
+app.get('/', function (req, res) {
+  applications.getAppDataBySessionId(userDB, req.signedCookies.session_id, function (apps) {
+    console.log(apps);
+    app.locals.styles = '<link rel="stylesheet" href="/css/app.css">';
+    res.render('apps');
+  }, function (msg) {
+    console.log(msg);
+    app.locals.styles = '<link rel="stylesheet" href="/css/login.css">';
+    res.render('login', {
+      header: "Авторизуйтесь",
+      msg: msg
+    });
+  });
+});
+
 app.get('/ajax/pomodoro', function (req, res) {
   var json = {
     status: 'ok',
