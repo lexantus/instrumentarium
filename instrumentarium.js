@@ -37,10 +37,15 @@ app.use(cookieParser(credentials.cookieSecret, {
 
 app.use(function (req, res, next) {
   if (req.signedCookies.session_id) {
+    console.log("[LOGIN MIDDLEWARE] req.url " + req.url + " session_id " + req.signedCookies.session_id);
     next();
   }
   else {
-    res.render('login');
+    console.log("[LOGIN MIDDLEWARE] Render login");
+    res.render('login', {
+      header: "Hello man!",
+      msg: "This is message"
+    });
   }
 });
 
