@@ -41,7 +41,8 @@ app.use(function (req, res, next) {
     next();
   }
   else {
-    console.log("[LOGIN MIDDLEWARE] Render login");
+    console.log("[LOGIN MIDDLEWARE] Render login because session_id = " + req.signedCookies.session_id);
+    app.locals.styles = '<link rel="stylesheet" href="/css/login.css">';
     res.render('login', {
       header: "Hello man!",
       msg: "This is message"
@@ -58,6 +59,7 @@ userDB.connect();
 var applications = require('./apps');
 
 app.get('/', function (req, res) {
+  console.log("[Route] " + req.url);
   applications.getAppDataBySessionId(userDB, req.signedCookies.session_id, function (apps) {
     console.log(apps);
     app.locals.styles = '<link rel="stylesheet" href="/css/app.css">';
