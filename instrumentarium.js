@@ -38,16 +38,11 @@ app.use(cookieParser(credentials.cookieSecret, {
 app.use(function (req, res, next) {
   if (req.signedCookies.session_id) {
     console.log("[LOGIN MIDDLEWARE] req.url " + req.url + " session_id " + req.signedCookies.session_id);
-    next();
   }
   else {
-    console.log("[LOGIN MIDDLEWARE] Render login because session_id = " + req.signedCookies.session_id);
-    app.locals.styles = '<link rel="stylesheet" href="/css/login.css">';
-    res.render('login', {
-      header: "Hello man!",
-      msg: "This is message"
-    });
+    console.log("[LOGIN MIDDLEWARE] session_id = " + req.signedCookies.session_id);
   }
+  next();
 });
 
 var Login = require('./Login');
