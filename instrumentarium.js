@@ -9,8 +9,6 @@ var handlebars = require('express-handlebars').create({
   defaultLayout: path.join(__dirname, 'views', 'layouts', 'main')
 });
 
-const { createLogger, format, transports } = require('winston');
-
 var app = express();
 var upload = multer();
 
@@ -21,14 +19,6 @@ var userDB = mysql.createConnection(UserDB.get());
 userDB.connect();
 
 var applications = require('./apps');
-
-const logger = createLogger({
-  transports: [
-    new transports.Console(),
-    new transports.File({filename: 'winston.log'}),
-    new transports.File({filename: 'error_winston.log', level: 'error'})
-  ]
-});
 
 app.engine('handlebars', handlebars.engine);
 app.set('views', path.join(__dirname, 'views'));
