@@ -1,24 +1,24 @@
-var express = require('express');
-var path = require('path');
-var bodyParser = require('body-parser');
-var multer = require('multer');
-var cookieParser = require('cookie-parser');
-var credentials = require('./credentials');
-var mysql = require('mysql');
-var handlebars = require('express-handlebars').create({
+let express = require('express');
+let path = require('path');
+let bodyParser = require('body-parser');
+let multer = require('multer');
+let cookieParser = require('cookie-parser');
+let credentials = require('./credentials');
+let mysql = require('mysql');
+let handlebars = require('express-handlebars').create({
   defaultLayout: path.join(__dirname, 'views', 'layouts', 'main')
 });
 
-var app = express();
-var upload = multer();
+let app = express();
+let upload = multer();
 
-var Login = require('./Login');
-var UserDB = require('./UserDB');
+let Login = require('./Login');
+let UserDB = require('./UserDB');
 
-var userDB = mysql.createConnection(UserDB.get());
+let userDB = mysql.createConnection(UserDB.get());
 userDB.connect();
 
-var applications = require('./apps');
+let applications = require('./apps');
 
 app.engine('handlebars', handlebars.engine);
 app.set('views', path.join(__dirname, 'views'));
@@ -72,16 +72,16 @@ app.get('/', function (req, res) {
 });
 
 app.get('/ajax/pomodoro', function (req, res) {
-  var json = {
+  let json = {
     status: 'ok',
     name: 'pomodoro',
     html: `
-<div id="pomodoro">
-<div id="clock">00:00</div>
-<div id="work" class="icon">start</div>
-<div id="short_break" class="icon">short break</div>
-<div id="long_break" class="icon">long break</div>
-<div id="result"></div>
+<div id="pomodoro" class="screen">
+    <div id="clock">00:00</div>
+    <div id="work" class="icon">start</div>
+    <div id="short_break" class="icon">short break</div>
+    <div id="long_break" class="icon">long break</div>
+    <div id="result"></div>
 </div>`.trim(),
     js: ['/js/pomodoro.js'],
     css: ['/css/pomodoro.css']
@@ -90,11 +90,11 @@ app.get('/ajax/pomodoro', function (req, res) {
 });
 
 app.get('/ajax/pomodoro/:year/:month/:day', function (req, res) {
-  var day = req.params.day,
+  let day = req.params.day,
     month = +req.params.month + 1,
     year = req.params.year;
 
-  var q = `select type, time from pomodoro where DATE(time)='${year}-${month}-${day}' AND session_id LIKE "${req.signedCookies.session_id}"`;
+  let q = `select type, time from pomodoro where DATE(time)='${year}-${month}-${day}' AND session_id LIKE "${req.signedCookies.session_id}"`;
   console.log(q);
   userDB.query(q, function (err, rows) {
     if (err) throw err;
@@ -103,8 +103,8 @@ app.get('/ajax/pomodoro/:year/:month/:day', function (req, res) {
 });
 
 app.get('/ajax/pomodoro/complete', function (req, res) {
-  var t = new Date().toISOString().slice(0, 19).replace('T', ' ');
-  var q = 'INSERT INTO pomodoro (type, time, session_id) VALUES ("0", "' + t + '", "' + req.signedCookies.session_id + '")';
+  let t = new Date().toISOString().slice(0, 19).replace('T', ' ');
+  let q = 'INSERT INTO pomodoro (type, time, session_id) VALUES ("0", "' + t + '", "' + req.signedCookies.session_id + '")';
   userDB.query(q, function (err) {
     if (err) throw err;
     res.json({
@@ -115,10 +115,10 @@ app.get('/ajax/pomodoro/complete', function (req, res) {
 });
 
 app.get('/ajax/pomodoro/break_complete', function (req, res) {
-  var t = new Date().toISOString().slice(0, 19).replace('T', ' ');
-  var q = 'INSERT INTO pomodoro (type, time, session_id) VALUES ("1", "' + t + '", "' + req.signedCookies.session_id + '")';
+  let t = new Date().toISOString().slice(0, 19).replace('T', ' ');
+  let q = 'INSERT INTO pomodoro (type, time, session_id) VALUES ("1", "' + t + '", "' + req.signedCookies.session_id + '")';
   userDB.query(q, function (err) {
-    var json = {
+    let json = {
       status: 'ok',
       message: 'Break complete!'
     };
@@ -127,11 +127,11 @@ app.get('/ajax/pomodoro/break_complete', function (req, res) {
 });
 
 app.get('/ajax/pomodoro/long_break_complete', function (req, res) {
-  var t = new Date().toISOString().slice(0, 19).replace('T', ' ');
-  var session_id = req.signedCookies.session_id;
+  let t = new Date().toISOString().slice(0, 19).replace('T', ' ');
+  let session_id = req.signedCookies.session_id;
   userDB.query(`insert into pomodoro (type, time, session_id) values ("2", "${t}", "${session_id}")`,
     function (err) {
-      var json = {
+      let json = {
         status: 'ok',
         message: 'Long break complete'
       };
@@ -141,33 +141,33 @@ app.get('/ajax/pomodoro/long_break_complete', function (req, res) {
 
 app.get('/ajax/cites', function (req, res) {
   userDB.query('SELECT * FROM author', function (err, results) {
-    var selectAuthor = '<select name="author" id="author"><option value="-1" selected>-</option>';
-    var n = results.length;
-    for (var i = 0; i < n; i++) {
+    let selectAuthor = '<select name="author" id="author"><option value="-1" selected>-</option>';
+    let n = results.length;
+    for (let i = 0; i < n; i++) {
       selectAuthor += `<option value="${results[i].id}">${results[i].name}</option>`;
     }
     selectAuthor += '</select>';
 
-    var json = {};
+    let json = {};
     json.status = 'ok';
     json.name = 'cites';
     json.html = `
-<div id="cites">
-<form id="addCiteForm" action="/ajax/addCite" method="post">
-<h2>Add cite</h2>
-<label for="cite">Cite:</label>
-<textarea name="cite" id="cite" rows="6" cols="30" required></textarea>
-Author:
-${selectAuthor}
-<button type="submit">Add</button>
-</form>
-<form id="addAuthorForm" method="post" action="/ajax/cites/addAuthor">
-  <h2>Add author</h2>
-  <label for="author_name">Author:</label>
-  <input id="author_name" name="author_name" type="text" placeholder="author name" required>
-  <button type="submit">Add</button>
-</form>
-<button id="btnGetCites" type="button">Get cites</button>
+<div id="cites" class="screen">
+    <form id="addCiteForm" action="/ajax/addCite" method="post">
+        <h2>Add cite</h2>
+        <label for="cite">Cite:</label>
+        <textarea name="cite" id="cite" rows="6" cols="30" required></textarea>
+        Author:
+        ${selectAuthor}
+        <button type="submit">Add</button>
+    </form>
+    <form id="addAuthorForm" method="post" action="/ajax/cites/addAuthor">
+        <h2>Add author</h2>
+        <label for="author_name">Author:</label>
+        <input id="author_name" name="author_name" type="text" placeholder="author name" required>
+        <button type="submit">Add</button>
+    </form>
+    <button id="btnGetCites" type="button">Get cites</button>
 </div>`.trim();
     json.js = ['/js/cites.js'];
     json.css = ['/css/cites.css'];
