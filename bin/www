@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 
-var app = require('../instrumentarium');
+let app = require('../instrumentarium');
 
-var http = require('http');
+let http = require('http');
 
-var port = process.env.PORT || '80';
+let port = process.env.PORT || '80';
 app.set('port', port);
 
-var server = http.createServer(app);
-var host = '188.127.251.91';
+let server = http.createServer(app);
+let host = (process.argv[ 2 ] === 'localhost') ? 'localhost' : '188.127.251.91';
 
 server.on('listening', onListening);
 server.on('error', onError);
@@ -34,6 +34,6 @@ function onError(error) {
 }
 
 function onListening() {
-  var addr = server.address();
+  let addr = server.address();
   console.log('Start server ' + JSON.stringify(addr));
 }
