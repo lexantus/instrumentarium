@@ -3,5 +3,5 @@
 *.swo
 *.swp
 node_modules/
-credentials.js
+secret.js
 .idea/
