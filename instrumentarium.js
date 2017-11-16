@@ -67,8 +67,7 @@ app.get('/', function (req, res) {
     console.log(msg);
     app.locals.styles = '<link rel="stylesheet" href="/css/login.css">';
     res.render('login', {
-      header: "Авторизуйтесь",
-      msg: msg
+      header: "Authorize"
     });
   });
 });
@@ -227,18 +226,17 @@ app.post('/api/login', function (req, res) {
         console.log(msg);
         app.locals.styles = '<link rel="stylesheet" href="/css/login.css">';
         res.render('login', {
-          header: "Авторизуйтесь",
+          header: "Authorize",
           msg: msg
         });
       });
     } else {
       app.locals.styles = '<link rel="stylesheet" href="/css/login.css">';
       res.render('login', {
-        header: "Попробуйте еще раз"
+        header: "Try again"
       });
     }
   });
 });
 
-//app.listen(80, '188.127.251.91');
 module.exports = app;

@@ -5,6 +5,8 @@ class Pomodoro {
     this.seconds = 1500;
 
     let svgContainer = document.getElementById('result');
+    let audioLeasure = new Audio('/sounds/leasure.mp3');
+    let audioJob = new Audio('/sounds/job.mp3');
 
     let addSVG = (svg) => {
       let el = document.createElement('img');
@@ -14,11 +16,30 @@ class Pomodoro {
       svgContainer.appendChild(el);
     };
 
+    let showNotification = (title, body, icon, audio) => {
+      if (!("Notification" in window)) {
+        console.log("This browser does not support desktop notification");
+      }
+      else if (Notification.permission === 'granted'){
+        new Notification(title, {body, icon, requireInteraction: true});
+        audio.play();
+      }
+      else if (Notification.permission !== 'denied'){
+        Notification.requestPermission(((permission)=>{
+          if (permission === 'granted'){
+            new Notification(title, {body, icon, requireInteraction: true});
+            audio.play();
+          }
+        }));
+      }
+    };
+
     this.xhrPomodoroComplete = new XMLHttpRequest();
     this.xhrPomodoroComplete.onreadystatechange = () => {
       if (this.xhrPomodoroComplete.status === 200 && this.xhrPomodoroComplete.readyState === 4) {
         console.log("work: " + this.xhrPomodoroComplete.responseText);
         addSVG('tomato.svg');
+        showNotification('Pomodoro completed', 'Time to have a rest', '/imgs/tomato.png', audioLeasure);
       }
     };
 
@@ -27,6 +48,7 @@ class Pomodoro {
       if (this.xhrBreakComplete.status === 200 && this.xhrBreakComplete.readyState === 4) {
         console.log("short break: " + this.xhrBreakComplete.responseText);
         addSVG('short_break.svg');
+        showNotification('Short break completed', 'Work time', '/imgs/short_break.png', audioJob);
       }
     };
 
@@ -35,6 +57,7 @@ class Pomodoro {
       if (this.xhrLongBreakComplete.status === 200 && this.xhrLongBreakComplete.readyState === 4) {
         console.log("long break: " + this.xhrLongBreakComplete.responseText);
         addSVG('dinner.svg');
+        showNotification('Dinner completed', 'Work time', '/imgs/dinner.png', audioJob);
       }
     };
 
