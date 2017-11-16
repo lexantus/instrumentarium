@@ -24,7 +24,7 @@ class Pomodoro {
         new Notification(title, {body, icon, requireInteraction: true});
         audio.play();
       }
-      else if (Notification.permission !== 'denied'){
+      else {
         Notification.requestPermission(((permission)=>{
           if (permission === 'granted'){
             new Notification(title, {body, icon, requireInteraction: true});
