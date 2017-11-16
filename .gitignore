@@ -5,3 +5,4 @@
 node_modules/
 secret.js
 .idea/
+package-lock.json
