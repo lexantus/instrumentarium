@@ -3,7 +3,7 @@ let path = require('path');
 let bodyParser = require('body-parser');
 let multer = require('multer');
 let cookieParser = require('cookie-parser');
-let credentials = require('./credentials');
+let secret = require('./secret');
 let mysql = require('mysql');
 let handlebars = require('express-handlebars').create({
   defaultLayout: path.join(__dirname, 'views', 'layouts', 'main')
@@ -12,6 +12,8 @@ let handlebars = require('express-handlebars').create({
 let app = express();
 let upload = multer();
 
+let OAuth2 = require('oauth').OAuth2;
+let github = new OAuth2(secret.github_client_id, secret.github_secret, 'https://github.com/', 'login/oauth/authorize', 'login/oauth/access_token', null);
 let Login = require('./Login');
 let UserDB = require('./UserDB');
 
@@ -36,14 +38,14 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-app.use(cookieParser(credentials.cookieSecret, {
+app.use(cookieParser(secret.cookieSecret, {
   maxAge: 20000,
   secure: true,
   httpOnly: true,
   signed: true
 }));
 
-app.use(function (req, res, next) {
+/*app.use(function (req, res, next) {
   if (req.signedCookies.session_id || req.url === '/api/login') {
     console.log("[LOGIN MIDDLEWARE] req.url " + req.url + " session_id " + req.signedCookies.session_id);
     next();
@@ -54,7 +56,7 @@ app.use(function (req, res, next) {
       header: "Войдите"
     });
   }
-});
+});*/
 
 app.get('/', function (req, res) {
   applications.getAppDataBySessionId(userDB, req.signedCookies.session_id, function (apps) {
@@ -68,6 +70,21 @@ app.get('/', function (req, res) {
       header: "Авторизуйтесь",
       msg: msg
     });
+  });
+});
+
+app.get('/auth/github', function (req, res) {
+  res.redirect(303, github.getAuthorizeUrl({
+      redirect_uri: `http://${req.headers.host}/ready`,
+      scope: 'user,repo,gist'
+    }));
+});
+
+app.get('/ready', function (req, res) {
+  let code = req.query.code;
+  github.getOAuthAccessToken(code, {}, function (err, access_token, refresh_token) {
+    if (err) throw err;
+    res.send(`GITHUB access token is ${access_token}`);
   });
 });
 
