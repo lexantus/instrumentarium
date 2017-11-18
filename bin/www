@@ -2,16 +2,12 @@
 
 let app = require('../instrumentarium');
 
-let https = require('https');
-let fs = require('fs');
+let http = require('http');
 
-let port = process.env.PORT || '443';
+let port = process.env.PORT || '80';
 app.set('port', port);
 
-let server = https.createServer({
-  key: fs.readFileSync('key.pem'),
-  cert: fs.readFileSync('cert.pem')
-}, app);
+let server = http.createServer(app);
 
 let host = (process.argv[2] === 'localhost') ? 'localhost' : '188.127.251.91';
 
