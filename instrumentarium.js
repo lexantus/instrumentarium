@@ -43,8 +43,14 @@ function wwwRedirect(req, res, next) {
   next();
 }
 
-app.set('trust proxy', true);
-app.use(wwwRedirect);
+app.get('/*', function (req, res, next) {
+  console.log("www redirect");
+  if (req.headers.host.match(/^www\./) !== null) {
+    res.redirect("http://" + req.headers.host.slice(4) + req.url, 301);
+  } else {
+    next();
+  }
+});
 
 app.use(bodyParser.urlencoded({
   extended: true
@@ -86,9 +92,9 @@ app.get('/', function (req, res) {
 
 app.get('/auth/github', function (req, res) {
   res.redirect(303, github.getAuthorizeUrl({
-      redirect_uri: `http://${req.headers.host}/ready`,
-      scope: 'user,repo,gist'
-    }));
+    redirect_uri: `http://${req.headers.host}/ready`,
+    scope: 'user,repo,gist'
+  }));
 });
 
 app.get('/ready', function (req, res) {
