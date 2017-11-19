@@ -34,24 +34,6 @@ app.use(function (req, res, next) {
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-function wwwRedirect(req, res, next) {
-  console.log('wwwRedirect');
-  if (req.headers.host.slice(0, 4) === 'www.') {
-    let newHost = req.headers.host.slice(4);
-    return res.redirect(301, req.protocol + '://' + newHost + req.originalUrl);
-  }
-  next();
-}
-
-app.get('/*', function (req, res, next) {
-  console.log("www redirect");
-  if (req.headers.host.match(/^www\./) !== null) {
-    res.redirect("http://" + req.headers.host.slice(4) + req.url, 301);
-  } else {
-    next();
-  }
-});
-
 app.use(bodyParser.urlencoded({
   extended: true
 }));
