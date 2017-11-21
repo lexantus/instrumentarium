@@ -69,6 +69,22 @@ div.icon.pomodoro:active {
   border: 2px solid red;
 }
 
+div.icon.cv {
+  background: plum;
+}
+
+div.icon.cv:after {
+  content: "CV"
+}
+
+div.icon.cv:hover {
+  background: hotpink;
+}
+
+div.icon.cv:active {
+  border: 2px solid darkmagenta;
+}
+
 div.icon.money {
   background: #030;
 }

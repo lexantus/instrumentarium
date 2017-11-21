@@ -45,18 +45,14 @@ app.use(cookieParser(secret.cookieSecret, {
   signed: true
 }));
 
-/*app.use(function (req, res, next) {
-  if (req.signedCookies.session_id || req.url === '/api/login') {
-    console.log("[LOGIN MIDDLEWARE] req.url " + req.url + " session_id " + req.signedCookies.session_id);
+app.use(function (req, res, next) {
+  if (req.url === '/' || req.signedCookies.session_id || req.url === '/api/login' || req.url === '/ready' || req.url === '/auth/github') {
     next();
   }
   else {
-    app.locals.styles = '<link rel="stylesheet" href="/css/login.css">';
-    res.render('login', {
-      header: "Войдите"
-    });
+    res.redirect('/');
   }
-});*/
+});
 
 app.get('/', function (req, res) {
   applications.getAppDataBySessionId(userDB, req.signedCookies.session_id, function (apps) {
@@ -210,6 +206,21 @@ app.post('/ajax/cites/addAuthor', upload.array([]), function (req, res) {
     if (err) throw err;
     res.json({status: 'ok', message: 'Author is successfully added', req: req.body, rows: rows});
   });
+});
+
+app.get('/ajax/cv', function (req, res) {
+  let json = {};
+  json.status = 'ok';
+  json.name = 'cv';
+  json.html = `
+<div id="cv" class="screen">
+    <p>
+        Here is your CV for employer.
+    </p>
+</div>`.trim();
+  json.js = ['/js/cv.js'];
+  json.css = ['/css/cv.css'];
+  res.json(json);
 });
 
 app.post('/api/login', function (req, res) {

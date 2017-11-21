@@ -50,3 +50,11 @@ th {
   background-color: #222;
   border: 1px solid #000;
 }
+
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border: 1px solid white;
+}
