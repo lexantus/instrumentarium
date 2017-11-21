@@ -29,6 +29,7 @@
     "winston": "^2.4.0"
   },
   "dependencies": {
+    "express-force-ssl": "^0.3.2",
     "oauth": "^0.9.15"
   }
 }

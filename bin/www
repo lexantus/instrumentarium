@@ -3,6 +3,7 @@
 let app = require('../instrumentarium');
 
 let https = require('https');
+let http = require('http');
 let fs = require('fs');
 
 let port = process.env.PORT || '443';
@@ -12,12 +13,14 @@ let key = fs.readFileSync('key.pem');
 let cert = fs.readFileSync('cert.pem');
 
 let server = https.createServer({key, cert}, app);
+let serverHttp = http.createServer(app);
 
 let host = (process.argv[2] === 'localhost') ? 'localhost' : '188.127.251.91';
 
 server.on('listening', onListening);
 server.on('error', onError);
 server.listen(port, host);
+serverHttp.listen(80, host);
 
 function onError(error) {
   switch (error.code) {

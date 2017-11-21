@@ -4,6 +4,7 @@ let bodyParser = require('body-parser');
 let multer = require('multer');
 let cookieParser = require('cookie-parser');
 let secret = require('./secret');
+let forceSSL = require('express-force-ssl');
 let mysql = require('mysql');
 let handlebars = require('express-handlebars').create({
   defaultLayout: path.join(__dirname, 'views', 'layouts', 'main')
@@ -26,6 +27,8 @@ app.engine('handlebars', handlebars.engine);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'handlebars');
 app.set('x-powered-by', false);
+
+app.use(forceSSL);
 
 app.use(function (req, res, next) {
   console.log("[Always middleware execution] req is ", req.url);
