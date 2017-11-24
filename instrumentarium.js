@@ -61,7 +61,7 @@ app.get('/', function (req, res) {
   applications.getAppDataBySessionId(userDB, req.signedCookies.session_id, function (apps) {
     console.log(apps);
     app.locals.styles = '<link rel="stylesheet" href="/css/app.css">';
-    res.render('apps');
+    res.render('apps', {date: new Date().toISOString()});
   }, function (msg) {
     console.log(msg);
     app.locals.styles = '<link rel="stylesheet" href="/css/login.css">';

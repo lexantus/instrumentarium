@@ -11,11 +11,6 @@ body {
   color: #999;
 }
 
-h1 {
-  border: 1px solid white;
-  padding: 10px;
-}
-
 button {
   border: 1px solid black;
   border-radius: 5px;
@@ -51,10 +46,27 @@ th {
   border: 1px solid #000;
 }
 
+header {
+  height: 60px;
+  display: grid;
+  grid-template-columns: repeat(3, 33.3%);
+  grid-template-rows: auto;
+  align-items: center;
+}
+
+header h1 {
+  grid-column: 2;
+}
+
 footer {
+  height: 60px;
+  display: grid;
+  grid-template-columns: repeat(3, 33.3%);
+  grid-template-rows: auto;
+  align-items: center;
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  border: 1px solid white;
+  z-index: 1;
 }

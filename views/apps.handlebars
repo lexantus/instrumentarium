@@ -4,11 +4,25 @@
     <img src="/svg/settings.svg" width="40px" style="position: absolute; right: 20px; top: 10px;"/>
 </header>
 <div id="apps" class="screen show">
-    <div class="icon pomodoro" data-appname="pomodoro"></div>
-    <div class="icon cites" data-appname="cites"></div>
-    <div class="icon cv" data-appname="cv"></div>
+    <div class="icon pomodoro" data-appname="pomodoro">
+        <img src="/svg/tomato.svg">
+        <span>Pomodoro</span>
+    </div>
+    <div class="icon cites" data-appname="cites">
+        <img src="/svg/dinner.svg">
+        <span>Cites</span>
+    </div>
+    <div class="icon cv" data-appname="cv">
+        <img src="/svg/github.svg">
+        <span>CV</span>
+    </div>
+    <div class="icon cv" data-appname="cv">
+        <img src="/svg/settings.svg">
+        <span>Books</span>
+    </div>
+
 </div>
 <footer>
-    <span>Current status</span>
+    <span>{{date}}</span>
 </footer>
 <script src="/js/apps.js"></script>

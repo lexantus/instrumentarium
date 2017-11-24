@@ -3,7 +3,7 @@ class ScreenManager {
     let screen = document.getElementById(name);
     ScreenManager.hideAllScreens(name);
     screen.classList.add('show');
-    screen.style.display = 'block';
+    screen.style.display = 'grid';
   }
 
   static hideAllScreens(exceptId) {
