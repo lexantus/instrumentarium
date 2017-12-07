@@ -1,0 +1,16 @@
+.login-form__signin {
+  box-sizing: border-box;
+  width: 100%;
+  font-weight: normal;
+  font-size: 13px;
+  color: #fff;
+  text-decoration: none;
+  line-height: 17px;
+  position: relative;
+  display: inline-block;
+  text-shadow: 0 1px 0 #fff;
+  white-space: nowrap;
+  border: solid 1px #ddd;
+  border-radius: 3px;
+  background-color: #db4c3f;
+}

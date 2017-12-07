@@ -1,0 +1,11 @@
+.login-form__separator {
+  position: absolute;
+  padding: 0 16px;
+  color: #ccc;
+  background: #fff;
+  font-size: 11px;
+  text-shadow: 0 1px 0 #fff;
+  text-transform: uppercase;
+  top: -9px;
+  left: 41%;
+}

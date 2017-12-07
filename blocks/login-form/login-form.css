@@ -1,0 +1,11 @@
+.login-form {
+  background-color: #151515;
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding: 20px;
+  width: 280px;
+  border: 1px solid black;
+  color: white;
+  overflow: auto;
+  text-align: center;
+}

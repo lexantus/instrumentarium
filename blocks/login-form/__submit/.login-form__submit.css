@@ -1,0 +1,11 @@
+.login-form__submit {
+  width: 120px;
+  height: 50px;
+  cursor: pointer;
+  background: green;
+  color: #fff;
+}
+
+.login-form__submit:hover {
+  background: darkgreen;
+}

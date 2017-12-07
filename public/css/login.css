@@ -37,8 +37,7 @@ form button:hover {
   background: #008f00;
 }
 
-.github-button {
-  background: dodgerblue;
+.external-login-button {
   padding: 10px 25px;
   color: #fff;
   border-radius: 5px;
@@ -52,10 +51,22 @@ form button:hover {
   height: auto;
 }
 
-.github-button img {
+.external-login-button img {
   margin-bottom: 4px;
+}
+
+.github-button {
+  background: dodgerblue;
 }
 
 .github-button:hover {
   background: darkblue;
+}
+
+.vk-button {
+  background: #33488b;
+}
+
+.vk-button:hover {
+  background: #0000b3;
 }

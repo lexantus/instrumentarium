@@ -1,0 +1,15 @@
+.external-login-button_color-blue {
+  background: dodgerblue;
+}
+
+.external-login-button_color-blue:hover {
+  background: darkblue;
+}
+
+.external-login-button_color-red {
+  background: red;
+}
+
+.external-login-button_color-red:hover {
+  background: darkred;
+}

@@ -1,12 +1,33 @@
 <h1>{{header}}</h1>
-<form action="/api/login" method="post">
-    <label for="login">Login</label>
-    <input type="text" name="login" id="login">
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password">
-    <button type="submit">Submit</button>
+<form class="login-form" action="/api/login" method="post">
+  <a href="/auth/google" class="login-form__signin login-form__signin_social-google">Войти через аккаунт Google</a>
+  <a href="/auth/fb" class="login-form__signin login-form__signin_social-fb">Войти через аккаунт Facebook</a>
+  <div class="login-form__separator">или</div>
+  <input class="login-form__input login-form__input_icon-email">
+  <input class="login-form__input login-form__input_icon-password">
+  <a href="/api/login" class="login-form__signin">Логин</a>
+  <a href="#">Забыли свой пароль?</a>
+  Нужна дополнительная помощь?<a href="#">Свяжитесь со службой поддержки</a>
+  У Вас нет учётной записи?<a href="#">Зарегистрироваться за секунды</a>
 </form>
-<a href="/auth/github" class="github-button">
-    <img src="/svg/github.svg" width="60px" height="60px"/>
-    <p>Github</p>
+<!--form class="login-form" action="/api/login" method="post">
+  <label for="login">Login</label>
+  <input class="login-form__input" type="text" name="login" id="login">
+  <label for="password">Password</label>
+  <input class="login-form__input" type="password" name="password" id="password">
+  <button class="login-form__submit" type="submit">Submit</button>
+  <button class="login-form__register" type="button">Register</button>
+</form>
+<a href="/auth/github" class="external-login-button external-login-button_color-blue">
+  <img class="external-login-button__img_github"/>
 </a>
+<a href="/auth/google" class="external-login-button external-login-button_color-red external-login-button_disabled">
+  <img class="external-login-button__img_google"/>
+</a>
+<a href="/auth/vk" class="external-login-button external-login-button_color-blue external-login-button_disabled">
+  <img class="external-login-button__img_vk"/>
+</a>
+<a href="/auth/fb" class="external-login-button external-login-button_color-blue external-login-button_disabled">
+  <img class="external-login-button__img_fb"/>
+</a-->
+

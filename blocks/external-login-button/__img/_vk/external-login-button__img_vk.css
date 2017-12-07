@@ -1,0 +1,7 @@
+.external-login-button__img_vk {
+  content: url('/svg/vk.svg');
+}
+
+.external-login-button__img_vk::after {
+  content: 'VK';
+}
