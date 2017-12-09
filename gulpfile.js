@@ -6,18 +6,25 @@ const src = require('gulp-bem-src');
 gulp.task('css', () => {
   src(
     ['blocks'],
-    [{block: 'login-form'}],
+    [
+      {block: 'login-form'},
+      {block: 'login-form', elem: 'a'},
+      {block: 'login-form', elem: 'input', mod: 'icon'},
+      {block: 'login-form', elem: 'register'},
+      {block: 'login-form', elem: 'separator'},
+      {block: 'login-form', elem: 'signin', mod: 'social'},
+      {block: 'login-form', elem: 'submit'}
+    ],
     'styles',
     {
       techMap: {
         styles: ['css']
       },
       config: {
-        'blocks/login-form': {scheme: 'nested'},
         'blocks': {scheme: 'nested'}
       }
     }
-  ).pipe(concat('common.css'))
+  ).pipe(concat('login-form.css'))
     .pipe(gulp.dest('bundles'))
     .pipe(debug());
 });

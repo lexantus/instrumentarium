@@ -3,7 +3,8 @@
 *.swo
 *.swp
 node_modules/
-secret.js
+bundles/
 .idea/
+secret.js
 package-lock.json
 *.pem
