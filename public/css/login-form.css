@@ -88,6 +88,13 @@
   cursor: pointer;
 }
 
+.margin_bottom-size-10px {
+  margin-bottom: 10px;
+}
+
+.margin_bottom-size-20px {
+  margin-bottom: 20px;
+}
 .login-form {
   background-color: white;
   box-sizing: border-box;
@@ -102,10 +109,6 @@
   font-size: 13px;
 }
 
-.login-form div {
-  margin-bottom: 10px;
-}
-
 .login-form__a {
   color: #dd4b39;
 }
@@ -117,8 +120,6 @@
   width: 100%;
   padding: 1em;
   border: 1px solid #ddd;
-  margin-bottom: 10px;
-  margin-top: 0px;
 }
 
 .login-form__input_icon-email {
@@ -179,7 +180,6 @@
   white-space: nowrap;
   border-radius: 3px;
   background-color: #db4c3f;
-  margin-bottom: 10px;
 }
 
 .login-form__signin_social-google {
