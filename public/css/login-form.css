@@ -1,71 +1,3 @@
-.external-login-button {
-  cursor: pointer;
-  transition: all 0.3s ease;
-  outline: none;
-  text-decoration: none;
-  width: 42px;
-  height: 42px;
-  border-radius: 5px;
-  padding: 10px 25px;
-}
-
-.external-login-button_color-blue {
-  background: dodgerblue;
-}
-
-.external-login-button_color-blue:hover {
-  background: darkblue;
-}
-
-.external-login-button_color-red {
-  background: red;
-}
-
-.external-login-button_color-red:hover {
-  background: darkred;
-}
-
-.external-login-button_disabled {
-  opacity: 0.5;
-  cursor: auto;
-}
-.external-login-button__img {
-  width: 20px;
-  height: 20px;
-}
-
-.external-login-button__img_fb {
-  content: url('/svg/fb.svg');
-}
-
-.external-login-button__img_fb::after {
-  content: 'Facebook';
-}
-
-.external-login-button__img_github {
-  content: url('/svg/github.svg');
-}
-
-.external-login-button__img_github::after {
-  content: 'Github';
-}
-
-.external-login-button__img_google {
-  content: url('/svg/google.svg');
-}
-
-.external-login-button__img_google::after {
-  content: 'Google';
-}
-
-.external-login-button__img_vk {
-  content: url('/svg/vk.svg');
-}
-
-.external-login-button__img_vk::after {
-  content: 'VK';
-}
-
 .caption-with-close {
   text-align: left;
   height: 42px;
@@ -184,12 +116,46 @@
 
 .login-form__signin_social-google {
   background: #4285f4;
+  position: relative;
+}
+
+.login-form__signin_social-google:after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: url(/svg/google.svg) no-repeat 0 0;
+  top: 9px;
+  left: 13px;
 }
 
 .login-form__signin_social-fb {
   background: #3b5998;
 }
 
+.login-form__signin_social-fb:after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: url(/svg/fb.svg) no-repeat 0 0;
+  left: 43px;
+  top: 197px;
+}
+
+.login-form__signin_social-github {
+  background: #24292e;
+}
+
+.login-form__signin_social-github:after {
+  content: '';
+  position: absolute;
+  width: 21px;
+  height: 21px;
+  background: url(/svg/github.svg) no-repeat 0 0;
+  top: 240px;
+  left: 41px;
+}
 .login-form__submit {
   width: 120px;
   height: 50px;

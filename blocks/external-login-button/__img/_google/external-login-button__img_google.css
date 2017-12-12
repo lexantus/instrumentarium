@@ -1,7 +1,0 @@
-.external-login-button__img_google {
-  content: url('/svg/google.svg');
-}
-
-.external-login-button__img_google::after {
-  content: 'Google';
-}

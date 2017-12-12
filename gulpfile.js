@@ -32,8 +32,9 @@ gulp.task('css', () => {
     .pipe(debug());
 });
 
-gulp.task('default', ['css']);
 gulp.task('watch', () => {
   gulp.watch('blocks/**/*.css', ['css']);
   gulp.watch('blocks/**/*.js', ['js']);
 });
+
+gulp.task('default', ['watch']);

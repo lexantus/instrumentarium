@@ -1,7 +1,0 @@
-.external-login-button__img_fb {
-  content: url('/svg/fb.svg');
-}
-
-.external-login-button__img_fb::after {
-  content: 'Facebook';
-}

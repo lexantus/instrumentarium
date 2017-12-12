@@ -1,7 +1,0 @@
-.external-login-button__img_github {
-  content: url('/svg/github.svg');
-}
-
-.external-login-button__img_github::after {
-  content: 'Github';
-}

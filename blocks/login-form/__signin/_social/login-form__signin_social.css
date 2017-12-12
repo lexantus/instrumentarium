@@ -1,7 +1,42 @@
 .login-form__signin_social-google {
   background: #4285f4;
+  position: relative;
+}
+
+.login-form__signin_social-google:after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: url(/svg/google.svg) no-repeat 0 0;
+  top: 9px;
+  left: 13px;
 }
 
 .login-form__signin_social-fb {
   background: #3b5998;
+}
+
+.login-form__signin_social-fb:after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: url(/svg/fb.svg) no-repeat 0 0;
+  left: 43px;
+  top: 197px;
+}
+
+.login-form__signin_social-github {
+  background: #24292e;
+}
+
+.login-form__signin_social-github:after {
+  content: '';
+  position: absolute;
+  width: 21px;
+  height: 21px;
+  background: url(/svg/github.svg) no-repeat 0 0;
+  top: 240px;
+  left: 41px;
 }
