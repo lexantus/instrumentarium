@@ -55,14 +55,14 @@
 }
 
 .login-form__input_icon-email {
-  background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTVweCIgaGVpZ2h0PSIxMnB4IiB2aWV3Q…Q2MjY1MSwyMjcuMTM4NDUyIFoiIGlkPSIxNXgxNSI+PC9wYXRoPjwvZz48L2c+PC9zdmc+Cg==);
+  background-image: url(/svg/envelope.svg);
   background-position: 10px;
   background-repeat: no-repeat;
   padding-left: 37px;
 }
 
 .login-form__input_icon-password {
-  background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTNweCIgaGVpZ2h0PSIxNnB4IiB2aWV3Q…40NzEyNjUxLDI3OS40OTAyNDMgWiIgaWQ9IlNoYXBlIj48L3BhdGg+PC9nPjwvZz48L3N2Zz4K);
+  background-image: url(/svg/lock.svg);
   background-position: 10px;
   background-repeat: no-repeat;
   padding-left: 37px;
