@@ -65,9 +65,7 @@ app.get('/', function (req, res) {
   }, function (msg) {
     console.log(msg);
     app.locals.styles = '<link rel="stylesheet" href="/css/login-form.css">';
-    res.render('login', {
-      header: "Authorize"
-    });
+    res.render('login');
   });
 });
 
@@ -239,16 +237,11 @@ app.post('/api/login', function (req, res) {
       }, function (msg) {
         console.log(msg);
         app.locals.styles = '<link rel="stylesheet" href="/css/login-form.css">';
-        res.render('login', {
-          header: "Authorize",
-          msg: msg
-        });
+        res.render('login');
       });
     } else {
       app.locals.styles = '<link rel="stylesheet" href="/css/login-form.css">';
-      res.render('login', {
-        header: "Try again"
-      });
+      res.render('login');
     }
   });
 });
