@@ -1,11 +1,17 @@
 .login-form {
-  background-color: #151515;
+  background-color: white;
   box-sizing: border-box;
   border-radius: 5px;
   padding: 20px;
-  width: 280px;
+  width: 410px;
   border: 1px solid black;
-  color: white;
+  color: black;
   overflow: auto;
   text-align: center;
+  font-family: sans-serif;
+  font-size: 13px;
+}
+
+.login-form div {
+  margin-bottom: 10px;
 }

@@ -64,7 +64,7 @@ app.get('/', function (req, res) {
     res.render('apps', {date: new Date().toISOString()});
   }, function (msg) {
     console.log(msg);
-    app.locals.styles = '<link rel="stylesheet" href="/css/login.css">';
+    app.locals.styles = '<link rel="stylesheet" href="/css/login-form.css">';
     res.render('login', {
       header: "Authorize"
     });
@@ -238,14 +238,14 @@ app.post('/api/login', function (req, res) {
         res.redirect('/');
       }, function (msg) {
         console.log(msg);
-        app.locals.styles = '<link rel="stylesheet" href="/css/login.css">';
+        app.locals.styles = '<link rel="stylesheet" href="/css/login-form.css">';
         res.render('login', {
           header: "Authorize",
           msg: msg
         });
       });
     } else {
-      app.locals.styles = '<link rel="stylesheet" href="/css/login.css">';
+      app.locals.styles = '<link rel="stylesheet" href="/css/login-form.css">';
       res.render('login', {
         header: "Try again"
       });

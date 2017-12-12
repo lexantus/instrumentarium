@@ -6,7 +6,8 @@
       {block: 'external-login-button', elem: 'img', mod: 'fb'},
       {block: 'external-login-button', elem: 'img', mod: 'github'},
       {block: 'external-login-button', elem: 'img', mod: 'google'},
-      {block: 'external-login-button', elem: 'img', mod: 'vk'}
+      {block: 'external-login-button', elem: 'img', mod: 'vk'},
+      {block: 'caption-with-close'}
     ]
   }
 )

@@ -9,9 +9,11 @@ gulp.task('css', () => {
     [
       {block: 'login-form'},
       {block: 'login-form', elem: 'a'},
+      {block: 'login-form', elem: 'input'},
       {block: 'login-form', elem: 'input', mod: 'icon'},
       {block: 'login-form', elem: 'register'},
       {block: 'login-form', elem: 'separator'},
+      {block: 'login-form', elem: 'signin'},
       {block: 'login-form', elem: 'signin', mod: 'social'},
       {block: 'login-form', elem: 'submit'}
     ],
@@ -26,11 +28,8 @@ gulp.task('css', () => {
     }
   ).pipe(concat('login-form.css'))
     .pipe(gulp.dest('bundles'))
+    .pipe(gulp.dest('public/css'))
     .pipe(debug());
-});
-
-gulp.task('js', () => {
-  console.log('JS TASK!!!');
 });
 
 gulp.task('default', ['css']);
