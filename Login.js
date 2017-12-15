@@ -2,14 +2,15 @@ var sha1 = require('sha1');
 var sprintf = require("sprintf-js").sprintf;
 const UUID = require('uuid/v1');
 
-exports.execute = function(db, req, res, callback) {
+exports.execute = function (db, req, res, callback) {
   var clms = 'id';
   var tbl = 'users';
+  console.log('form ' + JSON.stringify(req.body));
   var wr = 'name="' + req.body.login + '" AND password=UNHEX("' + sha1(req.body.password) + '")';
   var qry = sprintf('SELECT %s FROM %s WHERE %s', clms, tbl, wr);
   console.log(qry);
 
-  db.query(qry, function(err, rows, fields) {
+  db.query(qry, function (err, rows, fields) {
     var user_id;
     var session_id;
 
@@ -23,7 +24,7 @@ exports.execute = function(db, req, res, callback) {
       qry = sprintf('SELECT %s FROM %s WHERE %s', clms, tbl, wr);
       console.log(qry);
 
-      db.query(qry, function(err, rows, fields) {
+      db.query(qry, function (err, rows, fields) {
         if (err) throw err;
 
         if (rows.length === 0) {
@@ -32,7 +33,7 @@ exports.execute = function(db, req, res, callback) {
           values = "'" + session_id + "'," + user_id;
           qry = sprintf('INSERT INTO %s (%s) VALUES (%s)', tbl, clms, values);
           console.log(qry);
-          db.query(qry, function(err, rows, fields) {
+          db.query(qry, function (err, rows, fields) {
             if (err) throw err;
             callback({
               session_id: session_id

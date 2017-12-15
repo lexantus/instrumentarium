@@ -1,14 +1,10 @@
-UserDB = {};
-UserDB.host = 'localhost';
-UserDB.user = 'root';
-UserDB.password = 'movieclip1';
-UserDB.name = 'users';
+let mysql = require('mysql');
+let userDB = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: 'movieclip1',
+  database: 'users'
+});
+userDB.connect();
 
-exports.get = function() {
-  return {
-    host: UserDB.host,
-    user: UserDB.user,
-    password: UserDB.password,
-    database: UserDB.name
-  };
-};
+module.exports = userDB;
