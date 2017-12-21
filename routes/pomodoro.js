@@ -1,5 +1,6 @@
 let express = require('express');
 let router = express.Router();
+let db = require('../UserDB');
 
 router.get('/', function (req, res) {
   let json = {
@@ -26,7 +27,7 @@ router.get('/:year/:month/:day', function (req, res) {
 
   let q = `select type, time from pomodoro where DATE(time)='${year}-${month}-${day}' AND session_id LIKE "${req.signedCookies.session_id}"`;
   console.log(q);
-  userDB.query(q, function (err, rows) {
+  db.query(q, function (err, rows) {
     if (err) throw err;
     res.json({status: 'ok', rows: rows});
   });
@@ -35,7 +36,7 @@ router.get('/:year/:month/:day', function (req, res) {
 router.get('/complete', function (req, res) {
   let t = new Date().toISOString().slice(0, 19).replace('T', ' ');
   let q = 'INSERT INTO pomodoro (type, time, session_id) VALUES ("0", "' + t + '", "' + req.signedCookies.session_id + '")';
-  userDB.query(q, function (err) {
+  db.query(q, function (err) {
     if (err) throw err;
     res.json({
       status: 'ok',
@@ -47,7 +48,7 @@ router.get('/complete', function (req, res) {
 router.get('/break_complete', function (req, res) {
   let t = new Date().toISOString().slice(0, 19).replace('T', ' ');
   let q = 'INSERT INTO pomodoro (type, time, session_id) VALUES ("1", "' + t + '", "' + req.signedCookies.session_id + '")';
-  userDB.query(q, function (err) {
+  db.query(q, function (err) {
     let json = {
       status: 'ok',
       message: 'Break complete!'
@@ -59,7 +60,7 @@ router.get('/break_complete', function (req, res) {
 router.get('/long_break_complete', function (req, res) {
   let t = new Date().toISOString().slice(0, 19).replace('T', ' ');
   let session_id = req.signedCookies.session_id;
-  userDB.query(`insert into pomodoro (type, time, session_id) values ("2", "${t}", "${session_id}")`,
+  db.query(`insert into pomodoro (type, time, session_id) values ("2", "${t}", "${session_id}")`,
     function (err) {
       let json = {
         status: 'ok',

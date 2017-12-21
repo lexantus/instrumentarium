@@ -1,9 +1,10 @@
 let express = require('express');
 let cites = express.Router();
 let upload = require('multer')();
+let db = require('../UserDB');
 
 cites.get('/', function (req, res) {
-  userDB.query('SELECT * FROM author', function (err, results) {
+  db.query('SELECT * FROM author', function (err, results) {
     let selectAuthor = '<select name="author" id="author"><option value="-1" selected>-</option>';
     let n = results.length;
     for (let i = 0; i < n; i++) {
@@ -39,21 +40,21 @@ cites.get('/', function (req, res) {
 });
 
 cites.post('/get', function (req, res) {
-  userDB.query(`SELECT text, name FROM cites JOIN author ON cites.author_id = author.id`, function (err, rows) {
+  db.query(`SELECT text, name FROM cites JOIN author ON cites.author_id = author.id`, function (err, rows) {
     if (err) throw err;
     res.json({status: 'ok', rows: rows});
   });
 });
 
 cites.post('/addCite', upload.array([]), function (req, res) {
-  userDB.query(`INSERT INTO cites (author_id, text) VALUES (${req.body.author}, "${req.body.cite}")`, function (err, rows) {
+  db.query(`INSERT INTO cites (author_id, text) VALUES (${req.body.author}, "${req.body.cite}")`, function (err, rows) {
     if (err) throw err;
     res.json({status: 'ok', message: 'Cite is successfully added', req: req.body});
   });
 });
 
 cites.post('/addAuthor', upload.array([]), function (req, res) {
-  userDB.query(`INSERT INTO author (name) VALUES ("${req.body.author_name}")`, function (err, rows) {
+  db.query(`INSERT INTO author (name) VALUES ("${req.body.author_name}")`, function (err, rows) {
     if (err) throw err;
     res.json({status: 'ok', message: 'Author is successfully added', req: req.body, rows: rows});
   });
