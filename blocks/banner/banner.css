@@ -1,0 +1,19 @@
+.banner {
+  color: white;
+  background: #e1e1e1 no-repeat center center;
+  background-size: cover;
+  background-color: #15190a;
+  font-family: sans-serif;
+}
+
+.section-banner h1 {
+  font-size: 50px;
+  padding-bottom: 25px;
+  max-width: 750px;
+  width: 50%;
+}
+
+.section-banner h2 {
+  font-size: 25px;
+  padding-bottom: 25px;
+}

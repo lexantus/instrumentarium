@@ -3,7 +3,7 @@
   height: 42px;
   font-size: 14px;
   font-family: sans-serif;
-  margin-bottom: 0px;
+  margin-bottom: 0;
 }
 
 .caption-with-close:after {
@@ -11,7 +11,7 @@
   width: 16px;
   height: 16px;
   stroke: red;
-  background-image: url("/svg/cross.svg");
+  background-image: url(/svg/cross.svg);
   position: relative;
   top: 4px;
   right: -317px;
@@ -27,6 +27,7 @@
 .margin_bottom-size-20px {
   margin-bottom: 20px;
 }
+
 .login-form {
   background-color: white;
   box-sizing: border-box;
@@ -158,6 +159,7 @@
   top: 7px;
   left: 11px;
 }
+
 .login-form__submit {
   width: 120px;
   height: 50px;
@@ -168,4 +170,19 @@
 
 .login-form__submit:hover {
   background: darkgreen;
+}
+
+.margin_no {
+  margin: 0;
+}
+
+.padding_no {
+  padding: 0;
+}
+
+.top-bar {
+  background-color: white;
+  border: 1px solid black;
+  height: 58px;
+  font-size: 14px;
 }

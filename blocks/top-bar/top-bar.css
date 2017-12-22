@@ -1,5 +1,6 @@
 .top-bar {
-  font-size: 14px;
-  background-color: gray;
+  background-color: white;
+  border: 1px solid black;
   height: 58px;
+  font-size: 14px;
 }

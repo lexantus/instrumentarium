@@ -12,7 +12,7 @@ router.get('/', function (req, res) {
     res.render('apps', {date: new Date().toISOString()});
   }, function (msg) {
     console.log(msg);
-    res.render('login');
+    res.render('start');
   });
 });
 
@@ -44,10 +44,10 @@ router.post('/api/login', function (req, res) {
         res.redirect('/');
       }, function (msg) {
         console.log(msg);
-        res.render('login');
+        res.render('start');
       });
     } else {
-      res.render('login');
+      res.render('start');
     }
   });
 });

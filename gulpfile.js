@@ -3,7 +3,7 @@ const debug = require('gulp-debug');
 const concat = require('gulp-concat');
 const src = require('gulp-bem-src');
 
-gulp.task('css', () => {
+gulp.task('login-form', () => {
   src(
     ['blocks'],
     [
@@ -15,7 +15,8 @@ gulp.task('css', () => {
       {block: 'login-form', elem: 'separator'},
       {block: 'login-form', elem: 'signin'},
       {block: 'login-form', elem: 'signin', mod: 'social'},
-      {block: 'login-form', elem: 'submit'}
+      {block: 'login-form', elem: 'submit'},
+      {block: 'top-bar'}
     ],
     'styles',
     {
@@ -32,8 +33,49 @@ gulp.task('css', () => {
     .pipe(debug());
 });
 
+gulp.task('common', () => {
+  src(
+    ['blocks'],
+    [{block: 'top-bar'}],
+    'styles',
+    {
+      techMap: {
+        styles: ['css']
+      },
+      config: {
+        'blocks': {scheme: 'nested'}
+      }
+    }
+  ).pipe(concat('common.css'))
+    .pipe(gulp.dest('bundles'))
+    .pipe(gulp.dest('public/css'))
+    .pipe(debug());
+});
+
+gulp.task('start', () => {
+  src(
+    ['blocks'],
+    [
+      {block: 'banner'},
+      {block: 'banner', mod: 'overview'}
+    ],
+    'styles',
+    {
+      techMap: {
+        styles: ['css']
+      },
+      config: {
+        'blocks': {scheme: 'nested'}
+      }
+    }
+  ).pipe(concat('start.css'))
+    .pipe(gulp.dest('bundles'))
+    .pipe(gulp.dest('public/css'))
+    .pipe(debug());
+});
+
 gulp.task('watch', () => {
-  gulp.watch('blocks/**/*.css', ['css']);
+  gulp.watch(['blocks/**/*.css', 'gulpfile.js'], ['login-form', 'common', 'start']);
   gulp.watch('blocks/**/*.js', ['js']);
 });
 

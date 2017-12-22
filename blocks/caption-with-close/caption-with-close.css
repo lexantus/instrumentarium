@@ -3,7 +3,7 @@
   height: 42px;
   font-size: 14px;
   font-family: sans-serif;
-  margin-bottom: 0px;
+  margin-bottom: 0;
 }
 
 .caption-with-close:after {
@@ -11,7 +11,7 @@
   width: 16px;
   height: 16px;
   stroke: red;
-  background-image: url("/svg/cross.svg");
+  background-image: url(/svg/cross.svg);
   position: relative;
   top: 4px;
   right: -317px;

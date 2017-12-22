@@ -1,0 +1,13 @@
+.button {
+  box-sizing: border-box;
+  display: inline-block;
+  padding: 13px 17px;
+  color: white;
+  cursor: pointer;
+  background-color: #db4c3f;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+  font-size: 14px;
+  text-transform: uppercase;
+  transition: background-color .2s ease-in;
+}
