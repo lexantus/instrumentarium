@@ -3,4 +3,9 @@
   border: 1px solid black;
   height: 58px;
   font-size: 14px;
+  display: grid;
+  grid-template-columns: 50px 100px auto 300px 50px;
+  grid-template-areas: ". logo . menu .";
+  align-items: center;
+  justify-items: center;
 }
