@@ -120,6 +120,7 @@
   white-space: nowrap;
   border-radius: 3px;
   background-color: #db4c3f;
+  cursor: pointer;
 }
 
 .login-form__signin_social-google {

@@ -52,12 +52,16 @@ router.post('/api/login', function (req, res) {
         res.redirect('/');
       }, function (msg) {
         console.log(msg);
-        res.render('start');
+        res.redirect('/login');
       });
     } else {
-      res.render('start');
+      res.redirect('/login');
     }
   });
+});
+
+router.post('/api/signup', function (req, res) {
+  res.redirect('/signup');
 });
 
 module.exports = router;
