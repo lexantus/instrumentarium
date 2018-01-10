@@ -3,7 +3,7 @@ const debug = require('gulp-debug');
 const concat = require('gulp-concat');
 const src = require('gulp-bem-src');
 
-gulp.task('login-form', () => {
+gulp.task('login', () => {
   src(
     ['blocks'],
     [
