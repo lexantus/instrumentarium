@@ -26,7 +26,7 @@ router.get('/signup', function (req, res) {
 
 router.get('/auth/github', function (req, res) {
   res.redirect(303, github.getAuthorizeUrl({
-    redirect_uri: `http://${req.headers.host}/ready`,
+    redirect_uri: `https://${req.headers.host}/ready`,
     scope: 'user,repo,gist'
   }));
 });
