@@ -55,6 +55,13 @@
   border: 1px solid #ddd;
 }
 
+.login-form__input_icon-user {
+  background-image: url(/svg/user.svg);
+  background-position: 10px;
+  background-repeat: no-repeat;
+  padding-left: 37px;
+}
+
 .login-form__input_icon-email {
   background-image: url(/svg/envelope.svg);
   background-position: 10px;
@@ -177,7 +184,6 @@
 .padding_no {
   padding: 0;
 }
-
 .top-menu {
   grid-area: menu;
   display: grid;

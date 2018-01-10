@@ -20,6 +20,10 @@ router.get('/login', function (req, res) {
   res.render('login');
 });
 
+router.get('/signup', function (req, res) {
+  res.render('signup');
+});
+
 router.get('/auth/github', function (req, res) {
   res.redirect(303, github.getAuthorizeUrl({
     redirect_uri: `http://${req.headers.host}/ready`,
