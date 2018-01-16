@@ -1,12 +1,44 @@
 let express = require('express');
 let router = express.Router();
-let OAuth2 = require('oauth').OAuth2;
 let Login = require('../Login');
 let secret = require('../secret');
 let db = require('../UserDB');
-let github = new OAuth2(secret.github_client_id, secret.github_secret, 'https://github.com/', 'login/oauth/authorize', 'login/oauth/access_token', null);
+
+let passport = require('passport');
+let GitHubStrategy = require('passport-github').Strategy;
+
+passport.use(new GitHubStrategy({
+    clientID: secret.github_client_id,
+    clientSecret: secret.github_secret,
+    callbackURL: `https://localhost/ready`
+  },
+  function (accessToken, refreshToken, profile, cb) {
+    console.log("profile " + JSON.stringify(profile));
+    if (profile) {
+      return cb(null, profile);
+    }
+    else {
+      return cb(null, false);
+    }
+    /*User.findOrCreate({githubId: profile.id}, function (err, user) {
+      return cb(err, user);
+    });*/
+  }
+));
+
+passport.serializeUser(function (user, cb) {
+  cb(null, user);
+});
+
+passport.deserializeUser(function (obj, cb) {
+  cb(null, obj);
+});
+
+router.use(passport.initialize());
+router.use(passport.session());
 
 router.get('/', function (req, res) {
+  console.log('req.user = ' + req.user);
   applications.getAppDataBySessionId(db, req.signedCookies.session_id, function (apps) {
     console.log(apps);
     res.render('apps', {date: new Date().toISOString()});
@@ -24,19 +56,17 @@ router.get('/signup', function (req, res) {
   res.render('signup');
 });
 
-router.get('/auth/github', function (req, res) {
-  res.redirect(303, github.getAuthorizeUrl({
-    redirect_uri: `https://${req.headers.host}/ready`,
-    scope: 'user,repo,gist'
-  }));
-});
+router.get('/auth/github', passport.authenticate('github'));
 
-router.get('/ready', function (req, res) {
-  let code = req.query.code;
-  github.getOAuthAccessToken(code, {}, function (err, access_token, refresh_token) {
-    if (err) throw err;
-    res.send(`GITHUB access token is ${access_token}`);
+router.get('/ready',
+  passport.authenticate('github', {failureRedirect: '/login'}),
+  function (req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/');
   });
+
+router.get('/getGithubUser', function (req, res) {
+  res.send(`Access token ${req.query.access_token} Refresh token ${req.query.refresh_token}`);
 });
 
 let applications = require('../apps');
@@ -45,9 +75,7 @@ router.post('/api/login', function (req, res) {
   Login.execute(db, req, res, function (user) {
     if (user) {
       applications.getAppDataBySessionId(db, user.session_id, function (apps) {
-        res.cookie('session_id', user.session_id, {
-          signed: true
-        });
+        res.cookie('session_id', user.session_id, {signed: true});
         console.log(apps);
         res.redirect('/');
       }, function (msg) {
