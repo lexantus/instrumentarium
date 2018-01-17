@@ -42,9 +42,9 @@ app.use(cookieParser(secret.cookieSecret, {
 }));
 
 app.use('/', login);
+app.use('/cv', cv);
 app.use('/ajax/pomodoro', pomodoro);
 app.use('/ajax/cites', cites);
-app.use('/ajax/cv', cv);
 app.use('/ajax/books', books);
 
 module.exports = app;

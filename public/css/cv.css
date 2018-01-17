@@ -2,3 +2,104 @@ p {
   font-size: 35px;
   color: darkgreen;
 }
+
+body {
+  font-family: sans-serif;
+  font-size: 14px;
+  text-align: center;
+  margin: 0;
+  padding: 0px;
+}
+
+.project,
+.edu_organization,
+.programming_languages {
+  border: solid 1px #e6e6e6;
+  padding: 20px;
+  background-color: #f3f3f3;
+}
+
+.edu_organization {
+  width: auto;
+  height: 150px;
+}
+
+.edu_organization :nth-child(1) {
+  width: 150px;
+  float: left;
+}
+
+.edu_organization :nth-child(2) {
+  width: auto;
+  height: 300px;
+}
+
+.edu_org_logo {
+  width: 100px;
+}
+
+#experience_info {
+  clear: left;
+}
+
+#my_photo {
+  width: 250px;
+  border: 3px solid #fff;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.35);
+  float: left;
+  margin-right: 30px;
+  margin-bottom: 30px;
+}
+
+#business_card {
+  border: solid 1px #e6e6e6;
+  border-top: none;
+  background-color: #f3f3f3;
+  padding: 20px;
+  height: 230px;
+}
+
+#wrapper {
+  width: 960px;
+  margin: 0 auto;
+  text-align: left;
+  padding-top: 20px;
+}
+
+a {
+  color: #f26e24;
+}
+
+time {
+  background: #004281;
+  color: #fff;
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 11px;
+  padding: 3px 7px 4px;
+  text-align: center;
+  text-transform: uppercase;
+  vertical-align: top;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #004281;
+  font-weight: bold;
+  line-height: 1.1;
+  margin-bottom: 14px;
+  margin-top: 14px;
+}
+
+li {
+  list-style: none;
+  background: url('../imgs/li_orange_romb.png') no-repeat;
+  background-position: 0 6px;
+  padding-left: 13px;
+}
+
+footer, header {
+  background: #05192c;
+  color: #fff;
+  line-height: 45px;
+}
