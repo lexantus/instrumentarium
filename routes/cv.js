@@ -12,6 +12,14 @@ router.get('/wrike', function (req, res) {
       time: "9 months"
     },
     {
+      name: "Kosmos",
+      time: "3 months"
+    },
+    {
+      name: "Logrus",
+      time: "several months"
+    },
+    {
       name: "Восстания 6",
       time: "2 years"
     }
@@ -133,10 +141,140 @@ router.get('/wrike', function (req, res) {
         "OOP architecture"
       ],
       duration: "1 week"
+    },
+    {
+      name: "Online shop, drugstores on map",
+      client: "Fialka drugstore net",
+      used_technology: "iOS, Objective-C",
+      my_role: "Client-side Programmer",
+      team_size: "2 people",
+      platforms: "Mobile",
+      project_description: "You could buy products and observe shops locations. Find the nearest shop to your current location.",
+      what_i_have_done: [
+        "GUI programming",
+        "Map",
+        "OOP architecture"
+      ],
+      duration: "2 months"
+    },
+    {
+      name: "Quest games for children",
+      client: "Smeshariki (New Media)",
+      used_technology: "Flash, ActionScript 2.0",
+      my_role: "Client-side Programmer",
+      team_size: "2 people",
+      platforms: "Web",
+      project_description: "Integrate graphic and animation resources to quest engine. Develop new games from scratch (Zuma)",
+      what_i_have_done: [
+        "Create different games"
+      ],
+      duration: "9 months"
+    },
+    {
+      name: "Solitaire (Косынка)",
+      client: "Kosmos",
+      used_technology: "Flash, ActionScript 2.0",
+      my_role: "Client-side Programmer",
+      team_size: "2 people",
+      platforms: "Web",
+      project_description: "Social card game",
+      what_i_have_done: [
+        "Connect different social networks APIs to post on the wall",
+        "Optimize GUI performance"
+      ],
+      duration: "3 months"
+    },
+    {
+      name: "Localize games on different languages",
+      client: "Logrus",
+      used_technology: "Adobe Scripting, JS, Cocos2D",
+      my_role: "Integrate, Automation process",
+      team_size: "1 people",
+      platforms: "Web",
+      project_description: "Translate game on 5-7 languages. There were plenty games.",
+      what_i_have_done: [
+        "Script Adobe Photoshop, Adobe Animate to do drudgery things on JS"
+      ],
+      duration: "3 months"
+    },
+    {
+      name: "Navigator",
+      client: "Восстания 6",
+      used_technology: "Flash platform, ActionScript 3.0",
+      my_role: "Client-side Programmer",
+      team_size: "1-2 people",
+      platforms: "Desktop, Tablet",
+      project_description: "Observe yourself and company employees on map.",
+      what_i_have_done: [
+        "GUI programming",
+        "OOP architecture"
+      ],
+      duration: "2 years"
+    },
+    {
+      name: "Regata player",
+      client: "Восстания 6",
+      used_technology: "Flash platform, ActionScript 3.0",
+      my_role: "Client-side Programmer",
+      team_size: "1-2 people",
+      platforms: "Web, iOS, Android",
+      project_description: "This app show how boats have sailed on regata race.",
+      what_i_have_done: [
+        "Rewrite legacy code",
+        "Add new features",
+        "Algorithms",
+        "GUI programming",
+        "OOP architecture",
+        "Writing unit tests",
+        "Manage junior developer"
+      ],
+      duration: "2 years"
+    },
+    {
+      name: "JS Regata player",
+      client: "Восстания 6",
+      used_technology: "Flash platform, ActionScript 3.0",
+      my_role: "Client-side Programmer",
+      team_size: "1 people",
+      platforms: "Web",
+      project_description: "",
+      what_i_have_done: [
+        "Rewrite legacy code",
+        "Add new features",
+        "Algorithms",
+        "GUI programming",
+        "OOP architecture",
+        "Manage junior developer"
+      ],
+      duration: "6 months"
     }
   ];
   let languages = [
     "ActionScript 2.0", "ActionScript 3.0", "Objective C", "JS"
+  ];
+  let instruments = [
+    "HTML", "CSS", "SASS", "BEM",
+    "Grunt", "Gulp", "Ant",
+    "npm", "NodeJS", "Express",
+    "Handlebars", "React",
+    "ECMAScript 6", "Babel",
+    "SASS", "Shell Scripts", "Linux Terminal",
+    "Vim", "Webstorm",
+    "GIT",
+    "Mocha", "Chai",
+    "OpenLayers 4"
+  ];
+  let patterns = [
+    "Singleton",
+    "Simple Factory",
+    "Strategy",
+    "Decorator",
+    "Adapter",
+    "Facade",
+    "Proxy",
+    "MVC",
+    "MVP",
+    "Builder"
   ];
   res.render('cv', {
     title: 'CV for Wrike',
