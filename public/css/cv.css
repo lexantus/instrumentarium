@@ -14,14 +14,22 @@ body {
 .project,
 .edu_organization,
 .programming_languages {
-  border: solid 1px #e6e6e6;
+  border: solid 1px #85c800;
   padding: 20px;
-  background-color: #f3f3f3;
+  margin-bottom: 14px;
 }
 
 .edu_organization {
   width: auto;
   height: 150px;
+}
+
+.edu_organization span {
+  line-height: 22px;
+}
+
+.edu_organization img {
+  margin-right: 20px;
 }
 
 .edu_organization :nth-child(1) {
@@ -44,19 +52,24 @@ body {
 
 #my_photo {
   width: 250px;
-  border: 3px solid #fff;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.35);
+  border: 1px solid #85c800;
   float: left;
   margin-right: 30px;
   margin-bottom: 30px;
 }
 
 #business_card {
-  border: solid 1px #e6e6e6;
-  border-top: none;
-  background-color: #f3f3f3;
+  border: solid 1px #85c800;
   padding: 20px;
   height: 230px;
+}
+
+#business_card img {
+  margin-right: 10px;
+}
+
+#business_card div {
+  margin-bottom: 4px;
 }
 
 #wrapper {
@@ -66,12 +79,17 @@ body {
   padding-top: 20px;
 }
 
+.vert_align {
+  display: flex;
+  align-items: center;
+}
+
 a {
-  color: #f26e24;
+  color: #85c800;
 }
 
 time {
-  background: #004281;
+  background: #85c800;
   color: #fff;
   display: inline-block;
   font-size: 11px;
@@ -84,7 +102,6 @@ time {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: #004281;
   font-weight: bold;
   line-height: 1.1;
   margin-bottom: 14px;
@@ -94,12 +111,12 @@ h1, h2, h3, h4, h5, h6 {
 li {
   list-style: none;
   background: url('../imgs/li_orange_romb.png') no-repeat;
-  background-position: 0 6px;
+  background-position: 0 4px;
   padding-left: 13px;
 }
 
 footer, header {
-  background: #05192c;
+  background: #85c800;
   color: #fff;
   line-height: 45px;
 }

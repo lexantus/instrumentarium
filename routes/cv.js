@@ -173,7 +173,7 @@ router.get('/wrike', function (req, res) {
     {
       name: "Solitaire (Косынка)",
       client: "Kosmos",
-      used_technology: "Flash, ActionScript 2.0",
+      used_technology: "Flash, ActionScript 3.0",
       my_role: "Client-side Programmer",
       team_size: "2 people",
       platforms: "Web",
@@ -237,28 +237,44 @@ router.get('/wrike', function (req, res) {
       my_role: "Client-side Programmer",
       team_size: "1 people",
       platforms: "Web",
-      project_description: "",
+      project_description: "This app show how boats have sailed on regata race.",
       what_i_have_done: [
         "Rewrite legacy code",
         "Add new features",
         "Algorithms",
         "GUI programming",
-        "OOP architecture",
-        "Manage junior developer"
+        "OOP architecture"
       ],
       duration: "6 months"
     }
   ];
+
   let languages = [
-    "ActionScript 2.0", "ActionScript 3.0", "Objective C", "JS"
+    "ActionScript 2.0", "ActionScript 3.0", "Objective C", "JS", "HTML", "CSS"
   ];
+
+  let education = [
+    {
+      img: "/imgs/suai_logo.png",
+      name: "Saint-Petersburg State University of Aerospace Instrumentation (college)",
+      faculty: "Computer Systems and Networks",
+      year: "2008"
+    },
+    {
+      img: "/imgs/politech_logo.png",
+      name: "St. Petersburg State Polytechnic University",
+      faculty: "Faculty Of Engineering Cybernetic",
+      year: "2014"
+    }
+  ];
+
   let instruments = [
-    "HTML", "CSS", "SASS", "BEM",
+    "SASS", "BEM",
     "Grunt", "Gulp", "Ant",
     "npm", "NodeJS", "Express",
     "Handlebars", "React",
     "ECMAScript 6", "Babel",
-    "SASS", "Shell Scripts", "Linux Terminal",
+    "Shell Scripts", "Linux Terminal",
     "Vim", "Webstorm",
     "GIT",
     "Mocha", "Chai",
@@ -279,7 +295,7 @@ router.get('/wrike', function (req, res) {
   res.render('cv', {
     title: 'CV for Wrike',
     styles: '<link rel="stylesheet" href="/css/cv.css">',
-    data: {companies, projects, languages},
+    data: {companies, projects, languages, education, instruments, patterns, updateAt: "2018-01-22"},
     layout: false
   });
 });

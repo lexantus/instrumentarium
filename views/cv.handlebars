@@ -15,7 +15,7 @@
 <div id="wrapper">
   <section id="business_card">
     <section id="general_info">
-      <img id="my_photo" src="/imgs/avatar.jpg" alt="Rozhin Alexey photo"/>
+      <img id="my_photo" src="/imgs/avatar.jpg"/>
       <h2 id="full_name">Rozhin Alexey</h2>
       Birthday:
       <time id="birthday" datetime="1990-01-17">17 January 1990</time>
@@ -27,9 +27,12 @@
         <img src="/imgs/phone_icn.png"/>
         <span>+79119382921</span>
       </div>
-      <a id="e-mail" title="Send email" href="mailto:alexey.rozhin90@gmail.com">
-        alexey.rozhin90@gmail.com
-      </a>
+      <div id="current_email" class="vert_align">
+        <img src="/svg/envelope.svg" width="22"/>
+        <a id="e-mail" title="Send email" href="mailto:alexey.rozhin90@gmail.com">
+          alexey.rozhin90@gmail.com
+        </a>
+      </div>
       <address id="location">
         <div id="my_county" class="vert_align">
           <img src="/imgs/flag_russia.png" width="20"/>
@@ -53,63 +56,6 @@
         </div>
       {{/each}}
     </div>
-
-    <div id="Position_projects_i_worked_on">
-      <h2>Projects</h2>
-      {{#each data.projects}}
-        <div class="project">
-          <div class="project_name">
-            <strong>Project name:</strong> {{{name}}}
-          </div>
-          <div class="client">
-            <strong>Client:</strong> {{{client}}}
-          </div>
-          <div class="used_technology">
-            <strong>Used technology:</strong> {{{used_technology}}}
-          </div>
-          <div class="my_role">
-            <strong>My role:</strong> {{{my_role}}}
-          </div>
-          <div class="team_size">
-            <strong>Team size:</strong> {{{team_size}}}
-          </div>
-          <div class="platforms">
-            <strong>Platforms:</strong> {{{platforms}}}
-          </div>
-          <div class="project_description">
-            <strong>Project description:<br></strong> {{{project_description}}}
-          </div>
-          <div class="what_i_ve_done">
-            <strong>What I have done:<br></strong>
-            <ul>
-              {{#each what_i_have_done}}
-                <li>{{this}}</li>
-              {{/each}}
-            </ul>
-          </div>
-          <div class="duration">
-            <strong>Duration: </strong> {{{duration}}}
-          </div>
-        </div>
-      {{/each}}
-    </div>
-  </section>
-  <section id="education">
-    <h2>Education</h2>
-    <div class="edu_organization">
-      <img class="edu_org_logo" src="/imgs/suai_logo.png"
-           alt="Saint-Petersburg State University of Aerospace Instrumentation college logo"/>
-      <span>Saint-Petersburg State University of Aerospace Instrumentation (college)</span>
-      Computer Systems and Networks
-      2008
-    </div>
-    <div class="edu_organization">
-      <img class="edu_org_logo" src="/imgs/politech_logo.png"
-           alt="Saint-Petersburg State University of Aerospace Instrumentation college logo"/>
-      <span>St. Petersburg State Polytechnic University</span>
-      Faculty Of Engineering Cybernetic
-      2014
-    </div>
   </section>
   <section id="Skills">
     <h2>Skills</h2>
@@ -120,11 +66,73 @@
           <li>{{this}}</li>
         {{/each}}
       </ul>
+      <h2>Instruments</h2>
+      <ul>
+        {{#each data.instruments}}
+          <li>{{this}}</li>
+        {{/each}}
+      </ul>
+      <h2>OOP patterns</h2>
+      <ul>
+        {{#each data.patterns}}
+          <li>{{this}}</li>
+        {{/each}}
+      </ul>
     </div>
   </section>
+  <section id="education">
+    <h2>Education</h2>
+    {{#each data.education}}
+      <div class="edu_organization">
+        <img class="edu_org_logo" src="{{img}}"/>
+        <span>{{name}}</span><br>
+        <span>{{faculty}}</span><br>
+        <span>{{year}}</span>
+      </div>
+    {{/each}}
+  </section>
+  <div id="Position_projects_i_worked_on">
+    <h2>Projects</h2>
+    {{#each data.projects}}
+      <div class="project">
+        <div class="project_name">
+          <strong>Project name:</strong> {{{name}}}
+        </div>
+        <div class="client">
+          <strong>Client:</strong> {{{client}}}
+        </div>
+        <div class="used_technology">
+          <strong>Used technology:</strong> {{{used_technology}}}
+        </div>
+        <div class="my_role">
+          <strong>My role:</strong> {{{my_role}}}
+        </div>
+        <div class="team_size">
+          <strong>Team size:</strong> {{{team_size}}}
+        </div>
+        <div class="platforms">
+          <strong>Platforms:</strong> {{{platforms}}}
+        </div>
+        <div class="project_description">
+          <strong>Project description:<br></strong> {{{project_description}}}
+        </div>
+        <div class="what_i_ve_done">
+          <strong>What I have done:<br></strong>
+          <ul>
+            {{#each what_i_have_done}}
+              <li>{{this}}</li>
+            {{/each}}
+          </ul>
+        </div>
+        <div class="duration">
+          <strong>Duration: </strong> {{{duration}}}
+        </div>
+      </div>
+    {{/each}}
+  </div>
 </div>
 <footer style="vertical-align: middle">
-  <small>Updated at 2015.10.08 17:04</small>
+  Updated at {{data.updateAt}}
 </footer>
 </body>
 </html>
