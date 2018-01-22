@@ -233,7 +233,7 @@ router.get('/wrike', function (req, res) {
     {
       name: "JS Regata player",
       client: "Восстания 6",
-      used_technology: "Flash platform, ActionScript 3.0",
+      used_technology: "JS",
       my_role: "Client-side Programmer",
       team_size: "1 people",
       platforms: "Web",
@@ -250,7 +250,7 @@ router.get('/wrike', function (req, res) {
   ];
 
   let languages = [
-    "ActionScript 2.0", "ActionScript 3.0", "Objective C", "JS", "HTML", "CSS"
+    "Java", "C", "Objective C", "ActionScript 2.0", "ActionScript 3.0", "JS", "HTML", "CSS"
   ];
 
   let education = [
@@ -282,7 +282,6 @@ router.get('/wrike', function (req, res) {
   ];
   let patterns = [
     "Singleton",
-    "Simple Factory",
     "Strategy",
     "Decorator",
     "Adapter",
