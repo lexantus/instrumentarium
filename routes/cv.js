@@ -1,7 +1,7 @@
 let express = require('express');
 let router = express.Router();
 
-router.get('/wrike', function (req, res) {
+router.get('/', function (req, res) {
   let companies = [
     {
       name: "2Nova Interactive",
@@ -292,7 +292,7 @@ router.get('/wrike', function (req, res) {
     "Builder"
   ];
   res.render('cv', {
-    title: 'CV for Wrike',
+    title: 'CV',
     styles: '<link rel="stylesheet" href="/css/cv.css">',
     data: {companies, projects, languages, education, instruments, patterns, updateAt: "2018-01-22"},
     layout: false
